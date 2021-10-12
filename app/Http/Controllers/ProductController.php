@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -192,5 +193,28 @@ class ProductController extends Controller
         }
 
         return $response;
+    }
+
+    public function indexWeb(Request $request){
+        $products = Product::latest();
+
+        if ($request->filled('category')) {
+            $category = Category::where('name', 'LIKE', "%$request->category%")->first();
+            if($category){
+                $products = $products->where('category_id', $category->id);
+            }
+        }
+        
+        $products = $products->get();
+
+        return view('products', [
+            'products' => $products
+        ]);
+    }
+
+    public function details(Product $product){
+        return view('product-detail', [
+            'product' => $product
+        ]);
     }
 }
