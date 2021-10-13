@@ -36,11 +36,12 @@
               </div>
 
      
-            <div class="mt-5 md:mt-9">
-                <button type="button" class="border border-gray-700 text-gray-800 rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:text-white  hover:bg-black focus:outline-none focus:shadow-outline w-full" >
-                    Lanjutkan Checkout
+            <form action="{{ route('shop.detail.cart', $product) }}" method="POST" class="mt-5 md:mt-9">
+              @csrf
+                <button type="submit" class="border border-gray-700 text-gray-800 rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:text-white  hover:bg-black focus:outline-none focus:shadow-outline w-full" >
+                    Add to cart
                 </button>
-            </div>
+            </form>
             </div>
         </div>
         </div>

@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\AuthWebController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,6 +23,7 @@ Route::get('/', [HomeController::class, 'index'])->name('landingWeb');
 
 Route::get('/shop', [ProductController::class, 'indexWeb'])->name('shop');
 Route::get('/shop/{product}', [ProductController::class, 'details'])->name('shop.detail');
+Route::post('/shop/{product}/cart', [ProductController::class, 'addProductToCart'])->name('shop.detail.cart');
 
 Route::get('/login', [AuthWebController::class, 'login'])->name('login');
 Route::post('/login', [AuthWebController::class, 'loginStore'])->name('login.store');
@@ -33,3 +36,11 @@ Route::get('/auth/google/callback', [GoogleController::class, 'handleGoogleCallb
 Route::get('/register', [AuthWebController::class, 'register'])->name('register');
 Route::post('/register', [AuthWebController::class, 'registerStore'])->name('register.store');
 
+
+Route::get('/cart', [CartController::class, 'indexWeb'])->name('cart');
+Route::delete('carts/{product}', [CartController::class, 'removeProduct'])->name('cart.remove');
+Route::post('carts/{product}/increment', [CartController::class, 'increment'])->name('cart.increment');
+Route::post('carts/{product}/decrement', [CartController::class, 'decrement'])->name('cart.decrement');
+
+Route::get('/orders', [OrderController::class, 'indexWeb'])->name('orders');
+Route::post('/orders', [OrderController::class, 'storeWeb'])->name('orders.store');

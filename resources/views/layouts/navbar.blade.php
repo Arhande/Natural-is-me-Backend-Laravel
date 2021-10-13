@@ -18,9 +18,9 @@
       <!-- secondary nav -->
       
       @auth
-        <div class="hidden sm:block hover:text-gray-600">
+        <a href="{{ route("cart")}}" class="hidden sm:block hover:text-gray-600">
           Hi, {{ auth()->user()->name }} 
-        </div>
+        </a>
         <form class="hidden sm:block hover:text-gray-600" method="POST" action="{{ route("logout")}}">
           @csrf
           <button type="submit">Logout</button>   

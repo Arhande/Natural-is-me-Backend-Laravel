@@ -60,53 +60,40 @@ class CartController extends Controller
         ]);
     }
 
+    public function removeProduct(Product $product){
+
+        $cart = Cart::where('user_id', Auth::user()->id)->where('product_id', $product->id)->first();
+
+        $cart->delete(); 
+
+        return redirect()->route('cart');
+    }
+
     public function increment(Product $product){
 
         $cart = Cart::where('user_id', Auth::user()->id)->where('product_id', $product->id)->first();
 
-        if(!$cart){
-            return response()->json([
-                'error' => true,
-                'message' => "Product di cart tidak ditemukan"
-            ], 422);
-        }
-
         $cart->qty += 1;
         $cart->save();  
 
-        return response()->json([
-            'error' => false,
-            'message' => "Sukses",
-            'data' => $cart->load('product')
-        ]);
+        return redirect()->route('cart');
     }
 
     public function decrement(Product $product){
 
         $cart = Cart::where('user_id', Auth::user()->id)->where('product_id', $product->id)->first();
 
-        if(!$cart){
-            return response()->json([
-                'error' => true,
-                'message' => "Product di cart tidak ditemukan"
-            ], 422);
-        }
 
         if($cart->qty <= 1){
-            return response()->json([
-                'error' => true,
-                'message' => "Qty tidak boleh 0"
-            ], 422);
+            $cart->delete();
+            return redirect()->route('cart');
         }
 
         $cart->qty -= 1;
         $cart->save();
 
-        return response()->json([
-            'error' => false,
-            'message' => "Sukses",
-            'data' => $cart->load('product')
-        ]);
+        return redirect()->route('cart');
+
     }
 
     private function transform($validator)
@@ -117,5 +104,18 @@ class CartController extends Controller
         }
 
         return $response;
+    }
+
+    public function indexWeb(){
+        $carts = Cart::where('user_id', Auth::user()->id)->with('product')->latest()->get();
+        $total = 0;
+
+        foreach($carts as $cart){
+            $total += $cart->product->harga * $cart->qty;
+        }
+        return view('cart', [
+            'carts' => $carts,
+            'total' => $total
+        ]);
     }
 }

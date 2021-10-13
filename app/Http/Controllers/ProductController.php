@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
@@ -216,5 +218,25 @@ class ProductController extends Controller
         return view('product-detail', [
             'product' => $product
         ]);
+    }
+
+    public function addProductToCart(Request $request, Product $product){
+
+
+        $cart = Cart::firstOrNew(
+            [
+                'product_id' => $product->id, 
+                'user_id' =>  Auth::user()->id,
+            ]
+        );
+
+        if(!$cart->exists()){
+            $cart->qty = 1;
+        }else{
+            $cart->qty = $cart->qty + 1;
+        }
+        $cart->save();
+
+        return redirect()->route('shop.detail', $product->id);
     }
 }

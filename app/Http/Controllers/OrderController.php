@@ -94,4 +94,66 @@ class OrderController extends Controller
 
         return $response;
     }
+
+    public function indexWeb(){
+        $carts = Cart::where('user_id', Auth::user()->id)->with('product')->latest()->get();
+        $total = 0;
+
+        if($carts->isEmpty()){
+            return redirect()->route('cart');
+        }
+
+        foreach($carts as $cart){
+            $total += $cart->product->harga * $cart->qty;
+        }
+        return view('checkout', [
+            'carts' => $carts,
+            'total' => $total
+        ]);
+    }
+
+    public function storeWeb(Request $request){
+
+        $carts = Cart::where('user_id', Auth::user()->id)->with('product')->get();
+        $this->validate($request, [
+            'nama_penerima' => 'required|max:255|string',
+            'handphone' => 'required|numeric',
+            'provinsi' => 'required|max:255|string',
+            'kota' => 'required|max:255|string',
+            'kecamatan' => 'required|max:255|string',
+            'kodepos' => 'required|max:255|string',
+            'alamat' => 'required|max:255|string'
+        ]);
+        
+        $products = [];
+        $total = 0;
+
+        foreach($carts as $cart){
+            $products[$cart->product_id]['qty'] = $cart->qty;
+            $total += $cart->product->harga * $cart->qty;
+        }
+
+        $order = new Order();
+        $order->nama_penerima = $request->nama_penerima;
+        $order->handphone = $request->handphone;
+        $order->provinsi = $request->provinsi;
+        $order->kota = $request->kota;
+        $order->kecamatan = $request->kecamatan;
+        $order->kodepos = $request->kodepos;
+        $order->alamat = $request->alamat;
+        $order->harga_total = $total;
+        $order->ongkir = "10000";
+        $order->courier_id = 1;
+        $order->status= "Unpaid";
+        $order->user_id = Auth::user()->id;
+        $order->save();
+
+
+        
+        $order->products()->attach($products);
+        
+        $deleteCart = Cart::where('user_id', Auth::user()->id)->delete();
+
+        return redirect()->route('cart');
+    }
 }
