@@ -15,7 +15,7 @@
        <div>
         <!-- End Link kategori -->
 
-        <div class="md:grid md:grid-cols-2 md:gap-16 my-10 md:my-16 lg:my-28">
+        <div class="md:grid md:grid-cols-2 md:gap-16 my-10 md:my-16 lg:my-48">
             <div>
               <img src="{{ $product->image }}" alt="produk" class="" style="width:674px"   />
             </div>
