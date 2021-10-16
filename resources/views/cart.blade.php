@@ -32,7 +32,7 @@
                                     <span class="m-auto text-base lg:text-2xl font-thin">-</span>
                                 </button>  
                             </form>
-                            <input value="{{ $cart->qty }}"  class=" focus:outline-none text-center w-10 bg-gray-300 font-semibold text-xs md:text-md lg:text-base hover:text-black focus:text-black  md:text-basecursor-default flex items-center text-gray-700  outline-none" />        
+                            <input value="{{ $cart->qty }}"  class="focus:outline-none text-center w-10 bg-gray-300 font-semibold text-xs md:text-md lg:text-base hover:text-black focus:text-black  md:text-basecursor-default flex items-center text-gray-700  outline-none" />        
                             <form action="{{ route('cart.increment', $cart->product) }}" method="POST">
                                 @csrf
                                 <button type="submit" class="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-10 rounded-r cursor-pointer">
