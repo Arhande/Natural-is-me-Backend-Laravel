@@ -72,7 +72,7 @@
                         LOGIN
                       </button>
                       <div class="text-center my-5">OR</div>
-                      <a href="{{ route('google') }}" class=" flex flex-wrap justify-center text-center w-full max-w-xs mx-auto border hover:bg-gray-100 focus:bg-gray-400 text-white rounded-lg px-3 py-3 font-semibold">
+                      <a href="{{ route('google') }}" class=" flex flex-wrap justify-center text-center w-full max-w-xs mx-auto border hover:bg-gray-100  text-white rounded-lg px-3 py-3 font-semibold">
                           <img src="/images/gogle.png" alt="google" class="w-5 items-center">
                       </a>
                     </div>
