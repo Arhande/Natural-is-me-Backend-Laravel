@@ -28,7 +28,7 @@ class AuthWebController extends Controller
         
         
         if(auth()->user()->isAdmin()){
-            return redirect()->route('dashboard');
+            return redirect()->route('admin');
         }
 
         
@@ -42,7 +42,7 @@ class AuthWebController extends Controller
     
     public function registerStore(Request $request){
         $this->validate($request, [
-            'email' => 'required|max:255|email',
+            'email' => 'required|max:255|email|exists:mysql.users,email',
             'name' => 'required|max:255',
             'password' => 'required|confirmed'
         ]);
@@ -54,6 +54,8 @@ class AuthWebController extends Controller
         ]);
         
         auth()->attempt($request->only('email', 'password'));
+
+
         
         return redirect()->route('login')->with('success', 'Register Success');
     }

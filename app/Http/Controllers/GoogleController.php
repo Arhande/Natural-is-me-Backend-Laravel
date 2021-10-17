@@ -20,6 +20,9 @@ class GoogleController extends Controller
             $findUser = User::where('google_id', $user->getId())->first();
             if($findUser){
                 Auth::login($findUser);
+                if($findUser->isAdmin()){
+                    return redirect()->route('admin');
+                }
                 return redirect()->route('landingWeb');
             }else{
                 $newUser = User::create([

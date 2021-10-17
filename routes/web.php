@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthWebController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\GoogleController;
@@ -19,28 +20,39 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [HomeController::class, 'index'])->name('landingWeb');
+Route::get('', [HomeController::class, 'index'])->name('landingWeb');
 
-Route::get('/shop', [ProductController::class, 'indexWeb'])->name('shop');
-Route::get('/shop/{product}', [ProductController::class, 'details'])->name('shop.detail');
-Route::post('/shop/{product}/cart', [ProductController::class, 'addProductToCart'])->name('shop.detail.cart');
+Route::get('shop', [ProductController::class, 'indexWeb'])->name('shop');
+Route::get('shop/{product}', [ProductController::class, 'details'])->name('shop.detail');
+Route::post('shop/{product}/cart', [ProductController::class, 'addProductToCart'])->name('shop.detail.cart');
 
-Route::get('/login', [AuthWebController::class, 'login'])->name('login');
-Route::post('/login', [AuthWebController::class, 'loginStore'])->name('login.store');
-Route::post('/logout', [AuthWebController::class, 'logout'])->name('logout');
+Route::get('login', [AuthWebController::class, 'login'])->name('login');
+Route::post('login', [AuthWebController::class, 'loginStore'])->name('login.store');
+Route::post('logout', [AuthWebController::class, 'logout'])->name('logout');
 
-Route::get('/auth/google', [GoogleController::class, 'redirectToGoogle'])->name('google');
-Route::get('/auth/google/callback', [GoogleController::class, 'handleGoogleCallback'])->name('google.callback');
-
-
-Route::get('/register', [AuthWebController::class, 'register'])->name('register');
-Route::post('/register', [AuthWebController::class, 'registerStore'])->name('register.store');
+Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('google');
+Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback'])->name('google.callback');
 
 
-Route::get('/cart', [CartController::class, 'indexWeb'])->name('cart');
+Route::get('register', [AuthWebController::class, 'register'])->name('register');
+Route::post('register', [AuthWebController::class, 'registerStore'])->name('register.store');
+
+
+Route::get('cart', [CartController::class, 'indexWeb'])->name('cart');
 Route::delete('carts/{product}', [CartController::class, 'removeProduct'])->name('cart.remove');
 Route::post('carts/{product}/increment', [CartController::class, 'increment'])->name('cart.increment');
 Route::post('carts/{product}/decrement', [CartController::class, 'decrement'])->name('cart.decrement');
 
-Route::get('/orders', [OrderController::class, 'indexWeb'])->name('orders');
-Route::post('/orders', [OrderController::class, 'storeWeb'])->name('orders.store');
+Route::get('orders/store', [OrderController::class, 'indexStoreWeb'])->name('orders.store.get');
+Route::get('orders', [OrderController::class, 'indexWeb'])->name('orders');
+Route::get('orders/{order}', [OrderController::class, 'showWeb'])->name('orders.show');
+Route::post('orders', [OrderController::class, 'storeWeb'])->name('orders.store');
+
+
+Route::group(['prefix' => 'admin'], function () {
+    Route::get('dashboard', [AdminController::class, 'dashboard'])->name('admin');
+    Route::get('orders', [AdminController::class, 'orders'])->name('admin.orders');
+    Route::get('orders/{order}', [AdminController::class, 'showOrder'])->name('admin.orders.detail');
+    Route::get('products', [AdminController::class, 'products'])->name('admin.products');
+    Route::get('history', [AdminController::class, 'history'])->name('admin.history');
+});
