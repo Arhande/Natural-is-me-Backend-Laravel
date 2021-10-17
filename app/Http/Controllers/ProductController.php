@@ -237,6 +237,6 @@ class ProductController extends Controller
         }
         $cart->save();
 
-        return redirect()->route('shop.detail', $product->id);
+        return redirect()->back();
     }
 }

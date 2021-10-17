@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
-    </head>
-    <body>
-        <section class="py-1 bg-black-50">
+@extends('layouts.master')
+
+
+@section('content')
+    <section class="py-1 bg-black-50">
             <div class="w-full lg:w-8/12 px-4 mx-auto mt-6">
                 <div
                     class="
@@ -57,7 +52,7 @@
                                         >
                                             Nama
                                         </label>
-                                        <div>Farhan Dewanta</div>
+                                        <div>{{ $order->nama_penerima }}</div>
                                     </div>
                                 </div>
                                 <div class="w-full lg:w-6/12 px-4">
@@ -74,7 +69,7 @@
                                         >
                                             No. Invoice
                                         </label>
-                                        <div>{1231212321321}</div>
+                                        <div>{{ $order->id }}</div>
                                     </div>
                                 </div>
                                 <div class="w-full lg:w-6/12 px-4">
@@ -94,7 +89,7 @@
                                         <div
                                             class="font-semibold text-green-500"
                                         >
-                                            Sedang Dikirim
+                                            {{ $order->status }}
                                         </div>
                                     </div>
                                 </div>
@@ -128,7 +123,7 @@
                                         >
                                             Alamat
                                         </label>
-                                        <div>Rt/Rw Nama jalan</div>
+                                        <div>{{ $order->alamat }}</div>
                                     </div>
                                 </div>
                                 <div class="w-full lg:w-4/12 px-4">
@@ -145,7 +140,7 @@
                                         >
                                             Kota
                                         </label>
-                                        <div>nama kota</div>
+                                        <div>{{ $order->kota }}</div>
                                     </div>
                                 </div>
 
@@ -163,7 +158,7 @@
                                         >
                                             Kode Pos
                                         </label>
-                                        11840
+                                        {{ $order->kodepos }}
                                     </div>
                                 </div>
                             </div>
@@ -183,10 +178,11 @@
                             <div class="flex flex-wrap">
                                 <div class="w-full lg:w-12/12 px-4">
                                     <div class="relative w-full mb-3">
-                                        Lorem ipsum dolor sit amet consectetur
-                                        adipisicing elit. Quisquam consectetur
-                                        ipsam tempore voluptates? Harum tempore
-                                        maxime expedita ratione a ducimus!
+                                        @if ($order->catatan)
+                                            {{ $order->catatan }}
+                                        @else
+                                            Tidak ada Catatan dari admin
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -195,5 +191,4 @@
                 </div>
             </div>
         </section>
-    </body>
-</html>
+@endsection

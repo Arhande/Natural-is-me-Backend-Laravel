@@ -96,6 +96,20 @@ class OrderController extends Controller
     }
 
     public function indexWeb(){
+        $orders = Order::where('user_id', Auth::user()->id)->get();
+
+        return view('order', [
+            'orders'=>$orders
+        ]);
+    }
+
+    public function showWeb(Order $order){
+        return view('order-detail', [
+            'order'=> $order->load('products')
+        ]);
+    }
+
+    public function indexStoreWeb(){
         $carts = Cart::where('user_id', Auth::user()->id)->with('product')->latest()->get();
         $total = 0;
 
@@ -111,6 +125,7 @@ class OrderController extends Controller
             'total' => $total
         ]);
     }
+
 
     public function storeWeb(Request $request){
 

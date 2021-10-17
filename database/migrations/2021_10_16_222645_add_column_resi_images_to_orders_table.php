@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddStatusToOrdersTable extends Migration
+class AddColumnResiImagesToOrdersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,9 @@ class AddStatusToOrdersTable extends Migration
     public function up()
     {
         Schema::table('orders', function (Blueprint $table) {
-            $table->enum('status', ['Menunggu Konfirmasi', 'Dikonfirmasi', 'Pengirim', 'Terkirim', 'Selesai', 'Dibatalkan'])->default('Menunggu Konfirmasi')->after('ongkir');
+            $table->text('image_bukti')->after('nama_penerima')->nullable();
+            $table->string('no_resi')->after('id')->nullable();
+            $table->string('catatan')->after('status')->nullable();
         });
     }
 
@@ -26,7 +28,7 @@ class AddStatusToOrdersTable extends Migration
     public function down()
     {
         Schema::table('orders', function (Blueprint $table) {
-            $table->dropColumn('status');
+            $table->dropColumn(['image_bukti', 'no_resi', 'catatan']);
         });
     }
 }
