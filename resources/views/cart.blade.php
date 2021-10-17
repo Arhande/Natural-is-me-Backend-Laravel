@@ -9,7 +9,7 @@
 
         <div>
         @foreach ($carts as $cart)
-            <div class="border border-black md:py-5 lg:py-5 lg:my-3">
+            <div class="border border-black md:py-5 lg:py-5 lg:my-3 shadow-lg">
                 <div class="grid grid-cols-5 items-center gap-7">
                     <div class="px-4">
                         <img src="{{ asset($cart->product->image) }}" class="w-16 md:w-36 lg:w-64" alt="product" />
@@ -24,30 +24,30 @@
                             <button type="submit">  Hapus Produk </button>
                         </form>
                     </div>
+
                     <div>
-                        <div class="flex flex-row h-9 w-full rounded-md relative bg-transparent mt-1" >
-                            <form  action="{{ route('cart.decrement', $cart->product) }}" method="POST">
-                                @csrf
-                                <button type="submit" class="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-10 rounded-l cursor-pointer outline-none">
-                                    <span class="m-auto text-base lg:text-2xl font-thin">-</span>
-                                </button>  
-                            </form>
-                            <input value="{{ $cart->qty }}"  class="focus:outline-none text-center w-10 bg-gray-300 font-semibold text-xs md:text-md lg:text-base hover:text-black focus:text-black  md:text-basecursor-default flex items-center text-gray-700  outline-none" />        
-                            <form action="{{ route('cart.increment', $cart->product) }}" method="POST">
-                                @csrf
-                                <button type="submit" class="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-10 rounded-r cursor-pointer">
-                                    <span class="m-auto text-base  lg:text-2xl font-thin">+</span> </button> 
-                            </form>
-                        </div>
+                            <div class="flex flex-row h-9 w-full rounded-md relative bg-transparent mt-1" >
+                                <div class="flex flex-row border h-7 w-20 md:h-10 md:w-24 rounded-lg border-gray-400 relative">
+                                    <button class="font-semibold border-r bg-gray-400 hover:bg-gray-600 text-white border-gray-400 h-full w-20 flex rounded-l focus:outline-none cursor-pointer">
+                                        <span class="m-auto">-</span>
+                                    </button>
+                                        <div class="bg-white w-24 text-xs md:text-base flex items-center justify-center cursor-default">
+                                        <span>2</span>
+                                        </div>
+                                    <button class="font-semibold border-l  bg-gray-400 hover:bg-gray-600 text-white border-gray-400 h-full w-20 flex rounded-r focus:outline-none cursor-pointer">
+                                        <span class="m-auto">+</span>
+                                    </button>
+                                </div>
+                            </div>
                     </div>
                     <div>
                        <h3 class="text-sm md:text-lg font-semibold">{{ $cart->qty * $cart->product->harga }}</h3>
                     </div>
                 </div>
             </div>
-        @endforeach
-            
+        @endforeach    
         </div>
+
         <div class="border-t border-black mt-20 py-5 text-lg font-semibold px-4">
             Total : {{ $total }}
         </div>
