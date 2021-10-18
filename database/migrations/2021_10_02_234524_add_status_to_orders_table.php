@@ -14,7 +14,7 @@ class AddStatusToOrdersTable extends Migration
     public function up()
     {
         Schema::table('orders', function (Blueprint $table) {
-            $table->enum('status', ['Menunggu Konfirmasi', 'Dikonfirmasi', 'Pengirim', 'Terkirim', 'Selesai', 'Dibatalkan'])->default('Menunggu Konfirmasi')->after('ongkir');
+            $table->enum('status', ['Menunggu Konfirmasi', 'Pembayaran Dikonfirmasi', 'Terkirim', 'Selesai', 'Dibatalkan'])->default('Menunggu Konfirmasi')->after('ongkir');
         });
     }
 

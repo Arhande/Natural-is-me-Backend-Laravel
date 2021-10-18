@@ -31,80 +31,78 @@
     </head>
 
     <body class="bg-gray-100 font-family-karla flex">
-        <aside
-            class="relative bg-sidebar h-screen w-64 hidden sm:block shadow-xl"
+        <aside class="relative bg-sidebar h-screen w-64 hidden sm:block shadow-xl">
+      <div class="p-6">
+        <a href="{{ route('admin') }}">
+          <img src="/images/logo.png" alt="logo" />
+        </a>
+      </div>
+      <nav class="text-black text-base font-semibold pt-3">
+        <a
+          href="{{ route('admin') }}"
+          class="
+            flex
+            items-center
+            active-nav-link
+            text-black
+            py-4
+            pl-6
+            nav-item
+          "
         >
-            <div class="p-6">
-                <a href="/index.html">
-                    <img src="/images/logo.png" alt="logo" />
-                </a>
-            </div>
-            <nav class="text-black text-base font-semibold pt-3">
-                <a
-                    href="dashboard.html"
-                    class="
-                        flex
-                        items-center
-                        active-nav-link
-                        text-black
-                        py-4
-                        pl-6
-                        nav-item
-                    "
-                >
-                    <i class="fas fa-tachometer-alt mr-3"></i>
-                    Dashboard
-                </a>
-                <a
-                    href="orderAdmin.html"
-                    class="
-                        flex
-                        items-center
-                        text-black
-                        opacity-75
-                        hover:opacity-100
-                        py-4
-                        pl-6
-                        nav-item
-                    "
-                >
-                    <i class="fas fa-sticky-note mr-3"></i>
-                    Order
-                </a>
-                <a
-                    href="product.html"
-                    class="
-                        flex
-                        items-center
-                        text-black
-                        opacity-75
-                        hover:opacity-100
-                        py-4
-                        pl-6
-                        nav-item
-                    "
-                >
-                    <i class="fas fa-table mr-3"></i>
-                    Product
-                </a>
-                <a
-                    href="riwayat.html"
-                    class="
-                        flex
-                        items-center
-                        text-black
-                        opacity-75
-                        hover:opacity-100
-                        py-4
-                        pl-6
-                        nav-item
-                    "
-                >
-                    <i class="fas fa-align-left mr-3"></i>
-                    Riwayat
-                </a>
-            </nav>
-        </aside>
+          <i class="fas fa-tachometer-alt mr-3"></i>
+          Dashboard
+        </a>
+        <a
+          href="{{ route('admin.orders') }}"
+          class="
+            flex
+            items-center
+            text-black
+            opacity-75
+            hover:opacity-100
+            py-4
+            pl-6
+            nav-item
+          "
+        >
+          <i class="fas fa-sticky-note mr-3"></i>
+          Order
+        </a>
+        <a
+          href="{{ route('admin.products') }}"
+          class="
+            flex
+            items-center
+            text-black
+            opacity-75
+            hover:opacity-100
+            py-4
+            pl-6
+            nav-item
+          "
+        >
+          <i class="fas fa-table mr-3"></i>
+          Product
+        </a>
+        <a
+          href="{{ route('admin.history') }}"
+          class="
+            flex
+            items-center
+            text-black
+            opacity-75
+            hover:opacity-100
+            py-4
+            pl-6
+            nav-item
+          "
+        >
+          <i class="fas fa-align-left mr-3"></i>
+          Riwayat
+        </a>
+      </nav>
+    </aside>
 
         <div class="w-full flex flex-col h-screen overflow-y-hidden">
             <!-- Desktop Header -->
@@ -323,7 +321,8 @@
             <!-- isi Content -->
             <div class="w-full overflow-x-hidden border-t flex flex-col">
                 <main class="w-full flex-grow p-6">
-                    <div class="w-full lg:w-11/12 px-4 mx-auto mt-6">
+                    <form class="w-full lg:w-11/12 px-4 mx-auto mt-6" action="{{ route('admin.products.store') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
                         <div
                             class="
                                 relative
@@ -367,7 +366,7 @@
                                             transition-all
                                             duration-150
                                         "
-                                        type="button"
+                                        type="submit"
                                     >
                                         Upload
                                     </button>
@@ -402,6 +401,7 @@
                                             </label>
                                             <input
                                                 type="text"
+                                                value="{{ old('first_name') }}"
                                                 class="
                                                     border-0
                                                     px-3
@@ -419,7 +419,13 @@
                                                     transition-all
                                                     duration-150
                                                 "
+                                                name="first_name"
                                             />
+                                            @error('first_name')
+                                                <div>
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="w-full lg:w-6/12 px-4">
@@ -436,6 +442,7 @@
                                                 LastName
                                             </label>
                                             <input
+                                                value="{{ old('last_name') }}"
                                                 type="text"
                                                 class="
                                                     border-0
@@ -454,7 +461,13 @@
                                                     transition-all
                                                     duration-150
                                                 "
+                                                name="last_name"
                                             />
+                                            @error('last_name')
+                                                <div>
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="w-full lg:w-6/12 px-4">
@@ -472,6 +485,7 @@
                                                 Perawatan
                                             </label>
                                             <input
+                                                value="{{ old('perawatan') }}"
                                                 type="text"
                                                 class="
                                                     border-0
@@ -490,7 +504,13 @@
                                                     transition-all
                                                     duration-150
                                                 "
+                                                name="perawatan"
                                             />
+                                            @error('perawatan')
+                                                <div>
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="w-full lg:w-6/12 px-4">
@@ -508,6 +528,7 @@
                                                 Jenis
                                             </label>
                                             <input
+                                                value="{{ old('jenis') }}"
                                                 type="text"
                                                 class="
                                                     border-0
@@ -526,7 +547,13 @@
                                                     transition-all
                                                     duration-150
                                                 "
+                                                name="jenis"
                                             />
+                                            @error('jenis')
+                                                <div>
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="w-full lg:w-6/12 px-4">
@@ -544,6 +571,7 @@
                                                 Air
                                             </label>
                                             <input
+                                                value="{{ old('air') }}"
                                                 type="text"
                                                 class="
                                                     border-0
@@ -562,7 +590,13 @@
                                                     transition-all
                                                     duration-150
                                                 "
+                                                name="air"
                                             />
+                                            @error('air')
+                                                <div>
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="w-full lg:w-6/12 px-4">
@@ -580,6 +614,7 @@
                                                 Harga
                                             </label>
                                             <input
+                                                value="{{ old('harga') }}"
                                                 type="number"
                                                 class="
                                                     border-0
@@ -598,7 +633,13 @@
                                                     transition-all
                                                     duration-150
                                                 "
+                                                name="harga"
                                             />
+                                            @error('harga')
+                                                <div>
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="w-full px-4">
@@ -633,20 +674,19 @@
                                                     transition-all
                                                     duration-150
                                                 "
+                                                name="category_id"
                                             >
-                                                <option value="Indoor">
-                                                    Indoor
+                                            @foreach ($categories as $category)
+                                                <option value="{{ $category->id }}">
+                                                    {{ $category->name }}
                                                 </option>
-                                                <option value="Outdoor">
-                                                    Outdoor
-                                                </option>
-                                                <option value="Perlengkapan">
-                                                    Perlengkapan
-                                                </option>
-                                                <option value="Pupuk">
-                                                    Pupuk
-                                                </option>
+                                            @endforeach
                                             </select>
+                                            @error('category_id')
+                                                <div>
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
                                         </div>
                                     </div>
 
@@ -660,8 +700,8 @@
                                         "
                                     >
                                         <input
+                                            value="{{ old('image') }}"
                                             type="file"
-                                            multiple
                                             class="
                                                 cursor-pointer
                                                 relative
@@ -672,7 +712,13 @@
                                                 p-20
                                                 z-50
                                             "
+                                            name="image"
                                         />
+                                        @error('image')
+                                            <div>
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                         <div
                                             class="
                                                 text-center
@@ -707,8 +753,8 @@
                                         "
                                     >
                                         <input
+                                            value="{{ old('image_hover') }}"
                                             type="file"
-                                            multiple
                                             class="
                                                 cursor-pointer
                                                 relative
@@ -719,7 +765,13 @@
                                                 p-20
                                                 z-50
                                             "
+                                            name="image_hover"
                                         />
+                                        @error('image_hover')
+                                            <div>
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                         <div
                                             class="
                                                 text-center
@@ -746,7 +798,7 @@
                                 </class>
                             </div>
                         </div>
-                    </div>
+                    </form>
                 </main>
             </div>
         </div>

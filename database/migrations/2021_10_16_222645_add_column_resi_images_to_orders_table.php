@@ -15,6 +15,7 @@ class AddColumnResiImagesToOrdersTable extends Migration
     {
         Schema::table('orders', function (Blueprint $table) {
             $table->text('image_bukti')->after('nama_penerima')->nullable();
+            $table->text('image_bukti_path')->after('image_bukti')->nullable();
             $table->string('no_resi')->after('id')->nullable();
             $table->string('catatan')->after('status')->nullable();
         });
