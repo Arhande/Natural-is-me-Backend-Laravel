@@ -29,7 +29,7 @@ class AddColumnResiImagesToOrdersTable extends Migration
     public function down()
     {
         Schema::table('orders', function (Blueprint $table) {
-            $table->dropColumn(['image_bukti', 'no_resi', 'catatan']);
+            $table->dropColumn(['image_bukti', 'image_bukti_path', 'no_resi', 'catatan']);
         });
     }
 }

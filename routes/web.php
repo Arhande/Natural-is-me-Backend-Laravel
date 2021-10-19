@@ -3,9 +3,11 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthWebController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\GalleryInspirasiController;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\PembuatanTamanController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,6 +26,7 @@ Route::get('', [HomeController::class, 'index'])->name('landingWeb');
 
 Route::get('shop', [ProductController::class, 'indexWeb'])->name('shop');
 Route::get('shop/{product}', [ProductController::class, 'details'])->name('shop.detail');
+Route::delete('shop/{product}', [ProductController::class, 'destroyWeb'])->name('shop.delete');
 Route::post('shop/{product}/cart', [ProductController::class, 'addProductToCart'])->name('shop.detail.cart');
 
 Route::get('login', [AuthWebController::class, 'login'])->name('login');
@@ -47,10 +50,15 @@ Route::get('orders/store', [OrderController::class, 'indexStoreWeb'])->name('ord
 Route::get('orders/store/bukti', [OrderController::class, 'indexStoreWeb'])->name('orders.store.get');
 Route::get('orders', [OrderController::class, 'indexWeb'])->name('orders');
 Route::get('orders/{order}', [OrderController::class, 'showWeb'])->name('orders.show');
+Route::delete('orders/{order}', [OrderController::class, 'delete'])->name('orders.delete');
 Route::post('orders', [OrderController::class, 'storeWeb'])->name('orders.store');
-Route::post('orders/bukti/{order}', [OrderController::class, 'storeWeb'])->name('orders.bukti.store');
-Route::put('orders/bukti/{order}', [OrderController::class, 'storeWeb'])->name('orders.bukti');
+Route::get('orders/bukti/{order}', [OrderController::class, 'buktiEdit'])->name('orders.bukti');
+Route::post('orders/bukti/{order}', [OrderController::class, 'buktiUpdate'])->name('orders.bukti.store');
 
+
+Route::get('taman', [PembuatanTamanController::class, 'index'])->name('taman');
+
+Route::get('inspirasi', [GalleryInspirasiController::class, 'index'])->name('inspirasi');
 
 Route::group(['prefix' => 'admin'], function () {
     Route::get('dashboard', [AdminController::class, 'dashboard'])->name('admin');
@@ -58,9 +66,9 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('orders/{order}', [AdminController::class, 'showOrder'])->name('admin.orders.detail');
     Route::put('orders/{order}', [AdminController::class, 'updateStatusOrder'])->name('admin.orders.update');
     Route::get('products', [AdminController::class, 'products'])->name('admin.products');
+    Route::get('products/store', [AdminController::class, 'productsCreate'])->name('admin.products.create');
+    Route::post('products', [AdminController::class, 'storeProducts'])->name('admin.products.store');
     Route::get('products/{product}', [AdminController::class, 'productsEdit'])->name('admin.products.edit');
     Route::put('products/{product}', [AdminController::class, 'productsUpdate'])->name('admin.products.update');
-    Route::post('products', [AdminController::class, 'storeProducts'])->name('admin.products.store');
-    Route::get('products/store', [AdminController::class, 'productsCreate'])->name('admin.products.create');
     Route::get('history', [AdminController::class, 'history'])->name('admin.history');
 });

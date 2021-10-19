@@ -4,14 +4,27 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Order;
+use App\Models\OrderHasProducts;
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
     public function dashboard(){
-        return view('dashboard-admin');
+        $userCount = User::count();
+        $orderCount = Order::count();
+        $harga_total = Order::sum('harga_total');
+        $ongkir = Order::sum('ongkir');
+        $omset = $harga_total + $ongkir;
+        $totalTerjual = OrderHasProducts::sum('qty');
+        return view('dashboard-admin', [
+            'userCount'=>$userCount,
+            'orderCount'=>$orderCount,
+            'omset'=>$omset,
+            'totalTerjual'=>$totalTerjual,
+        ]);
     }
 
     // ========================= Products =========================
@@ -120,7 +133,7 @@ class AdminController extends Controller
     // ========================= Orders =========================
 
     public function orders(){
-        $orders = Order::where('status', '!=', '%Selesai%')->get();
+        $orders = Order::where('status', '!=', 'Selesai')->get();
         return view('order-admin', [
             'orders'=>$orders
         ]);
@@ -135,7 +148,7 @@ class AdminController extends Controller
     public function updateStatusOrder(Request $request, Order $order){
         $this->validate($request, [
             'status' => 'required|max:255|string',
-            'catatan' => 'required|string',
+            'catatan' => 'nullable|string'
         ]);
 
         $order->status = $request->status;
@@ -146,6 +159,7 @@ class AdminController extends Controller
     }
 
     public function history(){
-        return view('riwayat-admin');
+        $orders = Order::where('status', '=', 'Selesai')->get();
+        return view('riwayat-admin', ['orders' => $orders]);
     }
 }

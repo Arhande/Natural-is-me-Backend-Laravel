@@ -28,15 +28,21 @@
                     <div>
                             <div class="flex flex-row h-9 w-full rounded-md relative bg-transparent mt-1" >
                                 <div class="flex flex-row border h-7 w-20 md:h-10 md:w-24 rounded-lg border-gray-400 relative">
-                                    <button class="font-semibold border-r bg-gray-400 hover:bg-gray-600 text-white border-gray-400 h-full w-20 flex rounded-l focus:outline-none cursor-pointer">
+                                    <form  action="{{ route('cart.decrement', $cart->product) }}" method="POST">
+                                        @csrf
+                                        <button class="font-semibold border-r bg-gray-400 hover:bg-gray-600 text-white border-gray-400 h-full w-7 flex rounded-l focus:outline-none cursor-pointer">
                                         <span class="m-auto">-</span>
-                                    </button>
+                                        </button>
+                                    </form>
                                         <div class="bg-white w-24 text-xs md:text-base flex items-center justify-center cursor-default">
-                                        <span>2</span>
+                                        <span>{{ $cart->qty }}</span>
                                         </div>
-                                    <button class="font-semibold border-l  bg-gray-400 hover:bg-gray-600 text-white border-gray-400 h-full w-20 flex rounded-r focus:outline-none cursor-pointer">
-                                        <span class="m-auto">+</span>
-                                    </button>
+                                    <form action="{{ route('cart.increment', $cart->product) }}" method="POST">
+                                        @csrf
+                                        <button class="font-semibold border-l  bg-gray-400 hover:bg-gray-600 text-white border-gray-400 h-full w-7 flex rounded-r focus:outline-none cursor-pointer">
+                                            <span class="m-auto">+</span>
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
                     </div>

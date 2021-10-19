@@ -167,17 +167,10 @@
                             "
                             >Support</a
                         >
-                        <a
-                            href="#"
-                            class="
-                                block
-                                px-4
-                                py-2
-                                account-link
-                                hover:text-white
-                            "
-                            >Sign Out</a
-                        >
+                        <form class="block px-4 py-2 account-link hover:text-white" method="POST" action="{{ route("logout")}}">
+                            @csrf
+                            <button type="submit">Logout</button>   
+                        </form>
                     </div>
                 </div>
             </header>
@@ -292,22 +285,18 @@
                         <i class="fas fa-user mr-3"></i>
                         My Account
                     </a>
-                    <a
-                        href="#"
-                        class="
-                            flex
-                            items-center
-                            text-black
-                            opacity-75
-                            hover:opacity-100
-                            py-2
-                            pl-4
-                            nav-item
-                        "
-                    >
-                        <i class="fas fa-sign-out-alt mr-3"></i>
-                        Sign Out
-                    </a>
+                    <form class="flex
+                        items-center
+                        text-black
+                        opacity-75
+                        hover:opacity-100
+                        py-2
+                        pl-4
+                        nav-item" method="POST" action="{{ route("logout")}}">
+                        @csrf
+                        <button type="submit"><i class="fas fa-sign-out-alt mr-3"></i>
+                        logout</button>   
+                    </form>
                 </nav>
                 <!-- <button class="w-full bg-white cta-btn font-semibold py-2 mt-5 rounded-br-lg rounded-bl-lg rounded-tr-lg shadow-lg hover:shadow-xl hover:bg-gray-300 flex items-center justify-center">
                 <i class="fas fa-plus mr-3"></i> New Report
@@ -480,27 +469,31 @@
                                                 </svg>
                                             </a>
 
-                                            <div class="bg-gray-800">
-                                                <svg
+                                            <form action="{{ route('shop.delete', ['product' => $product->id]) }}" method="POST" class="bg-gray-800">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit">
+                                                    <svg
                                                     xmlns="http://www.w3.org/2000/svg"
                                                     class="
-                                                        text-white
-                                                        p-1
-                                                        h-6
-                                                        w-6
+                                                    text-white
+                                                    p-1
+                                                    h-6
+                                                    w-6
                                                     "
                                                     fill="none"
                                                     viewBox="0 0 24 24"
                                                     stroke="currentColor"
-                                                >
+                                                    >
                                                     <path
-                                                        stroke-linecap="round"
-                                                        stroke-linejoin="round"
-                                                        stroke-width="2"
-                                                        d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    stroke-width="2"
+                                                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
                                                     />
-                                                </svg>
-                                            </div>
+                                                    </svg>
+                                                </button>
+                                            </form>
                                         </div>
                                     </td>
                                 </tr>

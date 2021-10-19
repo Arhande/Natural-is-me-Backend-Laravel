@@ -136,9 +136,10 @@
             <a href="#" class="block px-4 py-2 account-link hover:text-white"
               >Support</a
             >
-            <a href="#" class="block px-4 py-2 account-link hover:text-white"
-              >Sign Out</a
-            >
+            <form class="block px-4 py-2 account-link hover:text-white" method="POST" action="{{ route("logout")}}">
+              @csrf
+              <button type="submit">Logout</button>   
+            </form>
           </div>
         </div>
       </header>
@@ -250,22 +251,18 @@
             <i class="fas fa-user mr-3"></i>
             My Account
           </a>
-          <a
-            href="#"
-            class="
-              flex
+          <form class="flex
               items-center
               text-black
               opacity-75
               hover:opacity-100
               py-2
               pl-4
-              nav-item
-            "
-          >
-            <i class="fas fa-sign-out-alt mr-3"></i>
-            Sign Out
-          </a>
+              nav-item" method="POST" action="{{ route("logout")}}">
+              @csrf
+              <button type="submit"><i class="fas fa-sign-out-alt mr-3"></i>
+            logout</button>   
+            </form>
         </nav>
         <!-- <button class="w-full bg-white cta-btn font-semibold py-2 mt-5 rounded-br-lg rounded-bl-lg rounded-tr-lg shadow-lg hover:shadow-xl hover:bg-gray-300 flex items-center justify-center">
                 <i class="fas fa-plus mr-3"></i> New Report
@@ -351,22 +348,7 @@
                   <td class="border text-left py-3 px-4">{{ $order->status }}</td>
                   <td>
                     <div class="flex justify-center items-center space-x-1">
-                      <a class="bg-blue-800">
-                        <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="text-white p-1 h-6 w-6"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        >
-                        <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"
-                        />
-                      </svg>
-                    </a>
+                      
                     
                     <a class="bg-red-800" href="{{ route('admin.orders.detail', ['order'=> $order->id]) }}">
                       <svg
@@ -385,11 +367,14 @@
                         </svg>
                       </a>
                       
-                      <a class="bg-gray-800">
-                        <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="text-white p-1 h-6 w-6"
-                        fill="none"
+                      <form action="{{ route('orders.delete', ['order'=> $order->id]) }}" method="POST" >
+                        <button class="bg-gray-800">
+                          @csrf
+                          @method('DELETE')
+                          <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          class="text-white p-1 h-6 w-6"
+                          fill="none"
                           viewBox="0 0 24 24"
                           stroke="currentColor"
                           >
@@ -400,7 +385,8 @@
                           d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
                           />
                         </svg>
-                      </a>
+                      </button>
+                      </form>
                     </div>
                   </td>
                 </tr>

@@ -12,8 +12,8 @@
       <!-- primary nav -->
       <div class="hidden sm:block  items-center space-x-10 ">
         <a href="{{ route("shop")}}" class="hover:text-gray-600 text-sm lg:text-base">Shop</a>
-        <a href="/pages/Taman.html" class="hover:text-gray-600 text-sm lg:text-base">Pembuatan Taman</a>
-        <a href="/pages/Inspirasi.html" class="hover:text-gray-600 text-sm lg:text-base">Galery & Inspirasi</a>
+        <a href="{{ route("taman")}}" class="hover:text-gray-600 text-sm lg:text-base">Pembuatan Taman</a>
+        <a href="{{ route("inspirasi")}}" class="hover:text-gray-600 text-sm lg:text-base">Galery & Inspirasi</a>
       </div></div>
       <!-- secondary nav -->
       
@@ -61,11 +61,11 @@
 
     <!-- mobile menu -->
     <div id="menu" class="hidden sm:hidden">
-      <a href="/pages/shop.html" class="hover:text-gray-600 block py-2 px-8 text-sm">Shop</a>
+      <a href="{{ route("shop")}}" class="hover:text-gray-600 block py-2 px-8 text-sm">Shop</a>
       <a href="/pages/Taman.html" class="hover:text-gray-600 block py-2 px-8 text-sm">Pembuatan Taman</a>
       <a href="/pages/Inspirasi.html" class="hover:text-gray-600 block py-2 px-8 text-sm">Galery & Inspirasi</a>
 
-      <a href="{{ route("shop")}}" class="hover:text-gray-600 block py-2 px-8 text-sm">Login</a>
+      <a href="{{ route("login")}}" class="hover:text-gray-600 block py-2 px-8 text-sm">Login</a>
     </div>
     </nav>
     <!-- end navbar -->

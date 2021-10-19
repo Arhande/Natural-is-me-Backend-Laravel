@@ -136,9 +136,10 @@
             <a href="#" class="block px-4 py-2 account-link hover:text-white"
               >Support</a
             >
-            <a href="#" class="block px-4 py-2 account-link hover:text-white"
-              >Sign Out</a
-            >
+            <form class="block px-4 py-2 account-link hover:text-white" method="POST" action="{{ route("logout")}}">
+              @csrf
+              <button type="submit">Logout</button>   
+            </form>
           </div>
         </div>
       </header>
@@ -250,22 +251,18 @@
             <i class="fas fa-user mr-3"></i>
             My Account
           </a>
-          <a
-            href="#"
-            class="
-              flex
+          <form class="flex
               items-center
               text-black
               opacity-75
               hover:opacity-100
               py-2
               pl-4
-              nav-item
-            "
-          >
-            <i class="fas fa-sign-out-alt mr-3"></i>
-            Sign Out
-          </a>
+              nav-item" method="POST" action="{{ route("logout")}}">
+              @csrf
+                <button type="submit"><i class="fas fa-sign-out-alt mr-3"></i>
+              logout</button>   
+            </form>
         </nav>
         <!-- <button class="w-full bg-white cta-btn font-semibold py-2 mt-5 rounded-br-lg rounded-bl-lg rounded-tr-lg shadow-lg hover:shadow-xl hover:bg-gray-300 flex items-center justify-center">
                 <i class="fas fa-plus mr-3"></i> New Report
@@ -316,6 +313,7 @@
                    Status
                   </label>
                   <select name="status" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-base shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
+                    <option value="Menunggu Pembayaran" @if ($order->status == 'Menunggu Pembayaran') selected @endif>Menunggu Pembayaran</option>
                     <option value="Menunggu Konfirmasi" @if ($order->status == 'Menunggu Konfirmasi') selected @endif>Menunggu Konfirmasi</option>
                     <option value="Pembayaran Dikonfirmasi" @if ($order->status == 'Pembayaran Dikonfirmasi') selected @endif>Pembayaran Dikonfirmasi</option>
                     <option value="Terkirim" @if ($order->status == 'Terkirim') selected @endif >Terkirim</option>

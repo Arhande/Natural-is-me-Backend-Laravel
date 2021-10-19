@@ -165,26 +165,41 @@
 
                             <hr class="mt-6 border-b-1 border-black" />
                             <h6
-                                class="
+                            class="
+                            text-black-400 text-sm
+                                    mt-3
+                                    mb-6
+                                    font-bold
+                                    uppercase
+                                    "
+                                    >
+                                    Catatan
+                                </h6>
+                                <div class="flex flex-wrap">
+                                    <div class="w-full lg:w-12/12 px-4">
+                                        <div class="relative w-full mb-3">
+                                            @if ($order->catatan)
+                                            {{ $order->catatan }}
+                                            @else
+                                            Tidak ada Catatan dari admin
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="">
+                                @if ($order->image_bukti)
+                                    <hr class="mt-6 border-b-1 border-black" />
+                                    <h6 class="
                                     text-black-400 text-sm
                                     mt-3
                                     mb-6
                                     font-bold
                                     uppercase
-                                "
-                            >
-                                Catatan
-                            </h6>
-                            <div class="flex flex-wrap">
-                                <div class="w-full lg:w-12/12 px-4">
-                                    <div class="relative w-full mb-3">
-                                        @if ($order->catatan)
-                                            {{ $order->catatan }}
-                                        @else
-                                            Tidak ada Catatan dari admin
-                                        @endif
-                                    </div>
-                                </div>
+                                ">
+                                    Bukti Bayar
+                                </h6>
+                                    <img src="{{ $order->image_bukti }}" alt="bukti">
+                                @endif
                             </div>
                         </form>
                     </div>

@@ -239,4 +239,15 @@ class ProductController extends Controller
 
         return redirect()->back();
     }
+
+    public function destroyWeb(Product $product){
+        Storage::delete($product->image_path);
+        Storage::delete($product->image_hover_path);
+        $product->orders()->detach();
+        $product->orders()->detach();
+        Cart::where('product_id', '=', $product->id)->delete();
+        $product->delete();
+
+        return redirect()->back();
+    }
 }

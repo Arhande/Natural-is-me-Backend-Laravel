@@ -27,8 +27,9 @@
                         </td>
                         <td class="p-2 md:border md:border-grey-500 text-left block md:table-cell">
                             <span class="inline-block w-1/3 md:hidden font-bold">Actions</span>
-                            <span class="bg-green-500 text-white font-semibold py-1 px-2 border border-blue-500 rounded">Sedang Dikirim</span>
+                            <span class="bg-green-500 text-white font-semibold py-1 px-2 border border-blue-500 rounded">{{ $order->status }}</span>
                             <button class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-1 px-2 border border-blue-500 rounded"><a href="{{ route('orders.show', ['order'=>$order->id]) }}"> Lihat Invoice</a></button>
+                            <a href="{{ route('orders.bukti', ['order'=>$order->id]) }}" class="bg-yellow-500 text-white font-semibold py-1 px-2 border border-yellow-500 rounded">Upload Bukti</a>
                         </td>
                     </tr>
                   @endforeach

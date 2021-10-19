@@ -38,4 +38,9 @@ class Product extends Model
     {
         return $value ? url($value) : $value;
     }
+
+    public function orders()
+    {
+        return $this->belongsToMany(Order::class, 'order_has_products', 'order_id', 'product_id')->withPivot('qty');
+    }
 }

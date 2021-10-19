@@ -35,7 +35,7 @@
         <div class="lg:grid lg:grid-cols-4 lg:gap-10">
             <div class="lg:col-span-2">
                 <div class="bg-green-600 bg-gradient-to-tl from-gray-600  p-4 rounded-lg text-gray-200">
-                    <h1 class="text-2xl font-semibold mb-5">Rp. 200.000</h1>
+                    <h1 class="text-2xl font-semibold mb-5">Rp. {{ $order->harga_total + $order->ongkir }}</h1>
                     <p class="text-sm font-semibold">SEMUA ATAS NAMA </p>
                     <h1 class="font-bold text-xl">RIFAAT IMAPPAGANTI AWALUDDIN & NATURALISME </h1>
                 </div>
@@ -119,10 +119,11 @@
                 
                 <div class="border border-gray-300 rounded-md p-6 mt-5 lg:mt-0">
                     <h1 class="text-lg font-bold text-center">Konfirmasi Pembayaran</h1>
-                <form class="mt-8 space-y-3" action="#" method="POST">
+                <form class="mt-8 space-y-3" action="{{ route('orders.bukti.store', ['order' => $order->id]) }}" method="POST" enctype="multipart/form-data">
+                    @csrf
               <div class="grid grid-cols-1 space-y-2">
                 <label class="text-sm font-bold text-gray-500 tracking-wide">Atas Nama :</label>
-                <input class="text-base p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500" type placeholder="name" />
+                <input class="text-base p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500" type placeholder="name" name="atas_nama_rekening" />
               </div>
               <div class="grid grid-cols-1 space-y-2">
                 <label class="text-sm font-bold text-gray-500 tracking-wide">Kirim Foto Pembayaran</label>
@@ -135,7 +136,7 @@
                       </div>
                       <p class="pointer-none text-gray-500 "><span class="text-sm">Drag and drop</span> files here <br /> or <a href id class="text-blue-600 hover:underline">select a file</a> from your computer</p>
                     </div>
-                    <input type="file" class="hidden" />
+                    <input type="file" class="hidden" name="image_bukti" />
                   </label>
                 </div>
               </div>

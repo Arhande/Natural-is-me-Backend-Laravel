@@ -135,9 +135,10 @@
             <a href="#" class="block px-4 py-2 account-link hover:text-black"
               >Support</a
             >
-            <a href="#" class="block px-4 py-2 account-link hover:text-black"
-              >Sign Out</a
-            >
+            <form class="block px-4 py-2 account-link hover:text-white" method="POST" action="{{ route("logout")}}">
+              @csrf
+              <button type="submit">Logout</button>   
+            </form>
           </div>
         </div>
       </header>
@@ -249,22 +250,18 @@
             <i class="fas fa-user mr-3"></i>
             My Account
           </a>
-          <a
-            href="#"
-            class="
-              flex
+          <form class="flex
               items-center
               text-black
               opacity-75
               hover:opacity-100
               py-2
               pl-4
-              nav-item
-            "
-          >
-            <i class="fas fa-sign-out-alt mr-3"></i>
-            Sign Out
-          </a>
+              nav-item" method="POST" action="{{ route("logout")}}">
+              @csrf
+              <button type="submit"><i class="fas fa-sign-out-alt mr-3"></i>
+            logout</button>   
+          </form>
         </nav>
         <!-- <button class="w-full bg-white cta-btn font-semibold py-2 mt-5 rounded-br-lg rounded-bl-lg rounded-tr-lg shadow-lg hover:shadow-xl hover:bg-gray-300 flex items-center justify-center">
                 <i class="fas fa-plus mr-3"></i> New Report
@@ -334,8 +331,8 @@
                 </svg>
               </div>
               <div class="text-right">
-                <p class="text-2xl">1,257</p>
-                <p>Visitors</p>
+                <p class="text-2xl">{{ $userCount }}</p>
+                <p>Pengguna</p>
               </div>
             </div>
             <div
@@ -395,8 +392,8 @@
                 </svg>
               </div>
               <div class="text-right">
-                <p class="text-2xl">557</p>
-                <p>Orders</p>
+                <p class="text-2xl">{{ $orderCount }}</p>
+                <p>Order</p>
               </div>
             </div>
             <div
@@ -456,8 +453,8 @@
                 </svg>
               </div>
               <div class="text-right">
-                <p class="text-2xl">$11,257</p>
-                <p>Sales</p>
+                <p class="text-2xl">Rp. {{ $omset }}</p>
+                <p>omset</p>
               </div>
             </div>
             <div
@@ -517,8 +514,8 @@
                 </svg>
               </div>
               <div class="text-right">
-                <p class="text-2xl">$75,257</p>
-                <p>Balances</p>
+                <p class="text-2xl">{{ $totalTerjual }}</p>
+                <p>Total Terjual</p>
               </div>
             </div>
           </div>
