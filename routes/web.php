@@ -44,9 +44,12 @@ Route::post('carts/{product}/increment', [CartController::class, 'increment'])->
 Route::post('carts/{product}/decrement', [CartController::class, 'decrement'])->name('cart.decrement');
 
 Route::get('orders/store', [OrderController::class, 'indexStoreWeb'])->name('orders.store.get');
+Route::get('orders/store/bukti', [OrderController::class, 'indexStoreWeb'])->name('orders.store.get');
 Route::get('orders', [OrderController::class, 'indexWeb'])->name('orders');
 Route::get('orders/{order}', [OrderController::class, 'showWeb'])->name('orders.show');
 Route::post('orders', [OrderController::class, 'storeWeb'])->name('orders.store');
+Route::post('orders/bukti/{order}', [OrderController::class, 'storeWeb'])->name('orders.bukti.store');
+Route::put('orders/bukti/{order}', [OrderController::class, 'storeWeb'])->name('orders.bukti');
 
 
 Route::group(['prefix' => 'admin'], function () {
@@ -55,6 +58,8 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('orders/{order}', [AdminController::class, 'showOrder'])->name('admin.orders.detail');
     Route::put('orders/{order}', [AdminController::class, 'updateStatusOrder'])->name('admin.orders.update');
     Route::get('products', [AdminController::class, 'products'])->name('admin.products');
+    Route::get('products/{product}', [AdminController::class, 'productsEdit'])->name('admin.products.edit');
+    Route::put('products/{product}', [AdminController::class, 'productsUpdate'])->name('admin.products.update');
     Route::post('products', [AdminController::class, 'storeProducts'])->name('admin.products.store');
     Route::get('products/store', [AdminController::class, 'productsCreate'])->name('admin.products.create');
     Route::get('history', [AdminController::class, 'history'])->name('admin.history');

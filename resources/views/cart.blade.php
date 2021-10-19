@@ -51,7 +51,7 @@
         <div class="border-t border-black mt-20 py-5 text-lg font-semibold px-4">
             Total : {{ $total }}
         </div>
-        <a href="{{ route("orders")}}">
+        <a href="{{ route('orders.store.get')}}">
         <button type="button" class="border border-gray-700 text-gray-700 rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:text-white hover:bg-gray-800 focus:outline-none focus:shadow-outline w-full" >
          Lanjutkan Checkout
         </button>

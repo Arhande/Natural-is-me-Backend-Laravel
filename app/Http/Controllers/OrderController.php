@@ -159,7 +159,6 @@ class OrderController extends Controller
         $order->harga_total = $total;
         $order->ongkir = "10000";
         $order->courier_id = 1;
-        $order->status= "Unpaid";
         $order->user_id = Auth::user()->id;
         $order->save();
 
@@ -170,5 +169,18 @@ class OrderController extends Controller
         $deleteCart = Cart::where('user_id', Auth::user()->id)->delete();
 
         return redirect()->route('cart');
+    }
+
+    public function buktiEdit(Order $order){
+        return view('upload-bukti', ['order'=>$order]);
+    }
+
+    public function buktiUpdate(Request $request, Order $order){
+
+        $this->validate($request, [
+            'atas_nama_rekening' => 'required|max:255|string',
+            'image_bukti' => 'required|mimes:jpeg,bmp,png,jpg|max:5000'
+        ]);
+        return redirect()->route('orders');
     }
 }
