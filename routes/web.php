@@ -57,6 +57,9 @@ Route::post('orders/bukti/{order}', [OrderController::class, 'buktiUpdate'])->na
 
 
 Route::get('taman', [PembuatanTamanController::class, 'index'])->name('taman');
+Route::get('taman/perawatan', [PembuatanTamanController::class, 'perawatanTaman']) ->name('perawatan');
+Route::get('taman/tamanIndoor', [PembuatanTamanController::class, 'tamanIndoor']) ->name('tamanIndoor');
+Route::get('taman/tamanOutdoor', [PembuatanTamanController::class, 'tamanOutdoor']) ->name('tamanOutdoor');
 
 Route::get('inspirasi', [GalleryInspirasiController::class, 'index'])->name('inspirasi');
 

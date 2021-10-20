@@ -62,7 +62,7 @@
     <!-- mobile menu -->
     <div id="menu" class="hidden sm:hidden">
       <a href="{{ route("shop")}}" class="hover:text-gray-600 block py-2 px-8 text-sm">Shop</a>
-      <a href="/pages/Taman.html" class="hover:text-gray-600 block py-2 px-8 text-sm">Pembuatan Taman</a>
+      <a href="{{ route("taman")}}" class="hover:text-gray-600 block py-2 px-8 text-sm">Pembuatan Taman</a>
       <a href="/pages/Inspirasi.html" class="hover:text-gray-600 block py-2 px-8 text-sm">Galery & Inspirasi</a>
 
       <a href="{{ route("login")}}" class="hover:text-gray-600 block py-2 px-8 text-sm">Login</a>
