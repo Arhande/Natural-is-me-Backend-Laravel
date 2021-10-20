@@ -349,7 +349,7 @@
                   <td>
                     <div class="flex justify-center items-center space-x-1">
                       
-                    
+                   
                     <a class="bg-red-800" href="{{ route('admin.orders.detail', ['order'=> $order->id]) }}">
                       <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -368,7 +368,7 @@
                       </a>
                       
                       <form action="{{ route('orders.delete', ['order'=> $order->id]) }}" method="POST" >
-                        <button class="bg-gray-800">
+                      <button class="bg-gray-800" style="margin-top: 7px">
                           @csrf
                           @method('DELETE')
                           <svg

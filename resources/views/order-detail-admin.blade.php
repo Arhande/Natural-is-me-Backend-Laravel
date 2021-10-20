@@ -296,15 +296,15 @@
                   <label class="block uppercase text-blueGray-600 text-base font-bold mb-2" htmlfor="grid-password">
                     Nama
                   </label>
-                  <input readonly value="{{$order->nama_penerima}}" type="text" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-base shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" >
+                  <input disabled  value="{{$order->nama_penerima}}" type="text" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-gray-100 rounded text-base " >
                 </div>
               </div>
               <div class="w-full lg:w-6/12 px-4">
                 <div class="relative w-full mb-3">
-                  <label class="block uppercase text-blueGray-600 text-base font-bold mb-2" htmlfor="grid-password">
+                  <label class="block uppercase text-blueGray-600 text-base font-bold mb-2" htmlfor="grid-password" >
                     No. Invoice
                   </label>
-                  <input readonly value="{{ $order->id }}" type="email" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-base shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
+                  <input disabled  value="{{ $order->id }}" type="email" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-gray-100 rounded text-base ">
                 </div>
               </div>
               <div class="w-full lg:w-6/12 px-4">
@@ -333,10 +333,10 @@
             <div class="flex flex-wrap">
               <div class="w-full lg:w-12/12 px-4">
                 <div class="relative w-full mb-3">
-                  <label class="block uppercase text-blueGray-600 text-base font-bold mb-2" htmlfor="grid-password">
+                  <label disabled class="block uppercase text-blueGray-600 text-base font-bold mb-2" htmlfor="grid-password">
                     Alamat
                   </label>
-                  <input readonly  value="{{ $order->alamat }}" type="text" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-base shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
+                  <input disabled  value="{{ $order->alamat }}" type="text" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-gray-100 rounded text-base ">
                 </div>
               </div>
               <div class="w-full lg:w-4/12 px-4">
@@ -344,7 +344,7 @@
                   <label class="block uppercase text-blueGray-600 text-base font-bold mb-2" htmlfor="grid-password">
                    Kota/Kabupaten
                   </label>
-                  <input readonly value="{{ $order->kota }}" type="email" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-base shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" >
+                  <input disabled value="{{ $order->kota }}" type="email" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-gray-100 rounded text-base " >
                 </div>
               </div>
               
@@ -353,7 +353,7 @@
                   <label class="block uppercase text-blueGray-600 text-base font-bold mb-2" htmlfor="grid-password">
                    Kecamatan
                   </label>
-                  <input readonly value="{{ $order->kecamatan }}" type="text" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-base shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" >
+                  <input disabled value="{{ $order->kecamatan }}" type="text" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-gray-100 rounded text-base " >
                 </div>
               </div>
 
@@ -362,7 +362,7 @@
                   <label class="block uppercase text-blueGray-600 text-base font-bold mb-2" htmlfor="grid-password">
                    Kode Pos
                   </label>
-                  <input readonly value="{{ $order->kodepos }}" type="text" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-base shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" value="11840">
+                  <input disabled value="{{ $order->kodepos }}" type="text" class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-gray-100 rounded text-base " value="11840">
                 </div>
               </div>
             </div>
