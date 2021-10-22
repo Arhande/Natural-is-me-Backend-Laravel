@@ -4,13 +4,12 @@
 
 @section('content')
 
-   <!-- Carrousel -->
-   <div>
+      <!-- Carrousel -->
+      <div>
           <img src="/images/banner4.svg" alt="banner4">
       </div>
       <!-- End Carrousel -->
   
-    
        <!-- Card Content Perawatan -->
        <div class="text-center my-10 text-xl md:text-2xl lg:text-3xl font-semibold">
         Perawatan Tanaman

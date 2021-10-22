@@ -396,7 +396,7 @@
                   </tbody>
                   </table>
 
-                 <div class="font-semibold mt-5">Total : {{ $order->harga_total }}</div>
+                 <div class="font-semibold mt-5">Total :  {{ $order->harga_total + $order->ongkir }}</div>
             </div>
 
 

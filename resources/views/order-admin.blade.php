@@ -344,7 +344,7 @@
                   <td class="border text-left py-3 px-4">{{ $order->id }}</td>
                   <td class="border w-1/5 text-left py-3 px-4">{{ $order->nama_penerima }}</td>
                   <td class="border text-left py-3 px-4">{{ $order->created_at }}</td>
-                  <td class="border text-left py-3 px-4">Rp.{{ $order->harga_total }}</td>
+                  <td class="border text-left py-3 px-4">Rp. {{ $order->harga_total + $order->ongkir }}</td>
                   <td class="border text-left py-3 px-4">{{ $order->status }}</td>
                   <td>
                     <div class="flex justify-center items-center space-x-1">
