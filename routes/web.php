@@ -1,14 +1,17 @@
 <?php
 
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\AuthWebController;
-use App\Http\Controllers\CartController;
-use App\Http\Controllers\GalleryInspirasiController;
-use App\Http\Controllers\GoogleController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\OrderController;
-use App\Http\Controllers\PembuatanTamanController;
-use App\Http\Controllers\ProductController;
+use App\Http\Controllers\Web\AdminController;
+use App\Http\Controllers\Web\AuthController;
+use App\Http\Controllers\Web\CartController;
+use App\Http\Controllers\Web\GalleryInspirasiController;
+use App\Http\Controllers\Web\GoogleController;
+use App\Http\Controllers\Web\HomeController;
+use App\Http\Controllers\Web\OrderController;
+use App\Http\Controllers\Web\PembuatanTamanController;
+use App\Http\Controllers\Web\ProductController;
+use App\Http\Controllers\Web\Admin\ProductController as AdminProductController;
+use App\Http\Controllers\Web\Admin\OrderController as AdminOrderController;
+use App\Http\Controllers\Web\Admin\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,34 +27,33 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('', [HomeController::class, 'index'])->name('landingWeb');
 
-Route::get('shop', [ProductController::class, 'indexWeb'])->name('shop');
-Route::get('shop/{product}', [ProductController::class, 'details'])->name('shop.detail');
-Route::delete('shop/{product}', [ProductController::class, 'destroyWeb'])->name('shop.delete');
+Route::get('shop', [ProductController::class, 'index'])->name('shop');
+Route::get('shop/{product}', [ProductController::class, 'show'])->name('shop.detail');
+Route::delete('shop/{product}', [ProductController::class, 'destroy'])->name('shop.delete');
 Route::post('shop/{product}/cart', [ProductController::class, 'addProductToCart'])->name('shop.detail.cart');
 
-Route::get('login', [AuthWebController::class, 'login'])->name('login');
-Route::post('login', [AuthWebController::class, 'loginStore'])->name('login.store');
-Route::post('logout', [AuthWebController::class, 'logout'])->name('logout');
+Route::get('login', [AuthController::class, 'login'])->name('login');
+Route::post('login', [AuthController::class, 'loginStore'])->name('login.store');
+Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('google');
 Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback'])->name('google.callback');
 
 
-Route::get('register', [AuthWebController::class, 'register'])->name('register');
-Route::post('register', [AuthWebController::class, 'registerStore'])->name('register.store');
+Route::get('register', [AuthController::class, 'register'])->name('register');
+Route::post('register', [AuthController::class, 'registerStore'])->name('register.store');
 
 
-Route::get('cart', [CartController::class, 'indexWeb'])->name('cart');
+Route::get('cart', [CartController::class, 'index'])->name('cart');
 Route::delete('carts/{product}', [CartController::class, 'removeProduct'])->name('cart.remove');
 Route::post('carts/{product}/increment', [CartController::class, 'increment'])->name('cart.increment');
 Route::post('carts/{product}/decrement', [CartController::class, 'decrement'])->name('cart.decrement');
 
-Route::get('orders/store', [OrderController::class, 'indexStoreWeb'])->name('orders.store.get');
-Route::get('orders/store/bukti', [OrderController::class, 'indexStoreWeb'])->name('orders.store.get');
-Route::get('orders', [OrderController::class, 'indexWeb'])->name('orders');
-Route::get('orders/{order}', [OrderController::class, 'showWeb'])->name('orders.show');
-Route::delete('orders/{order}', [OrderController::class, 'delete'])->name('orders.delete');
-Route::post('orders', [OrderController::class, 'storeWeb'])->name('orders.store');
+Route::get('orders/store', [OrderController::class, 'create'])->name('orders.store.get');
+Route::get('orders', [OrderController::class, 'index'])->name('orders');
+Route::get('orders/{order}', [OrderController::class, 'show'])->name('orders.show');
+Route::delete('orders/{order}', [OrderController::class, 'destroy'])->name('orders.delete');
+Route::post('orders', [OrderController::class, 'store'])->name('orders.store');
 Route::get('orders/bukti/{order}', [OrderController::class, 'buktiEdit'])->name('orders.bukti');
 Route::post('orders/bukti/{order}', [OrderController::class, 'buktiUpdate'])->name('orders.bukti.store');
 
@@ -64,14 +66,17 @@ Route::get('taman/tamanOutdoor', [PembuatanTamanController::class, 'tamanOutdoor
 Route::get('inspirasi', [GalleryInspirasiController::class, 'index'])->name('inspirasi');
 
 Route::group(['prefix' => 'admin'], function () {
-    Route::get('dashboard', [AdminController::class, 'dashboard'])->name('admin');
-    Route::get('orders', [AdminController::class, 'orders'])->name('admin.orders');
-    Route::get('orders/{order}', [AdminController::class, 'showOrder'])->name('admin.orders.detail');
-    Route::put('orders/{order}', [AdminController::class, 'updateStatusOrder'])->name('admin.orders.update');
-    Route::get('products', [AdminController::class, 'products'])->name('admin.products');
-    Route::get('products/store', [AdminController::class, 'productsCreate'])->name('admin.products.create');
-    Route::post('products', [AdminController::class, 'storeProducts'])->name('admin.products.store');
-    Route::get('products/{product}', [AdminController::class, 'productsEdit'])->name('admin.products.edit');
-    Route::put('products/{product}', [AdminController::class, 'productsUpdate'])->name('admin.products.update');
-    Route::get('history', [AdminController::class, 'history'])->name('admin.history');
+    Route::get('dashboard', [DashboardController::class, 'index'])->name('admin');
+
+    Route::get('orders', [AdminOrderController::class, 'index'])->name('admin.orders');
+    Route::get('orders/{order}', [AdminOrderController::class, 'show'])->name('admin.orders.detail');
+    Route::put('orders/{order}', [AdminOrderController::class, 'updateStatus'])->name('admin.orders.update');
+    Route::get('history', [AdminOrderController::class, 'history'])->name('admin.history');
+
+    Route::get('products', [AdminProductController::class, 'index'])->name('admin.products');
+    Route::get('products/store', [AdminProductController::class, 'create'])->name('admin.products.create');
+    Route::post('products', [AdminProductController::class, 'store'])->name('admin.products.store');
+    Route::get('products/{product}', [AdminProductController::class, 'edit'])->name('admin.products.edit');
+    Route::put('products/{product}', [AdminProductController::class, 'update'])->name('admin.products.update');
+    
 });

@@ -14,7 +14,7 @@ class AddAtasNamaToOrdersTable extends Migration
     public function up()
     {
         Schema::table('orders', function (Blueprint $table) {
-            $table->string('atas_nama_rekening')->before('image_bukti')->nullable();
+            $table->string('atas_nama_rekening')->nullable();
         });
     }
 
