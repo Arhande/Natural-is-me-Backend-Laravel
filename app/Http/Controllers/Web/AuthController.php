@@ -42,12 +42,17 @@ class AuthController extends Controller
     }
     
     public function registerStore(Request $request){
+        // dd($request->email);
         $this->validate($request, [
-            'email' => 'required|max:255|email|exists:mysql.users,email',
+            'email' => 'required|max:255|email',
             'name' => 'required|max:255',
             'password' => 'required|confirmed'
         ]);
-        
+
+        $user = User::where('email', '=', $request->email)->first();
+        if(!empty($user)){
+            return redirect()->back()->with('status', 'Gagal Membuat Email');
+        }
         $user = User::create([
             'email' => $request->email,
             'name' => $request->name,

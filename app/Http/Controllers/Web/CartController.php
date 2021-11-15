@@ -10,11 +10,15 @@ use Illuminate\Support\Facades\Auth;
 class CartController extends Controller
 {
     public function index(){
-        $carts = Cart::where('user_id', Auth::user()->id)->with('product')->latest()->get();
+        $carts = Cart::where('user_id', Auth::user()->id)->with('product', 'package')->latest()->get();
         $total = 0;
     
         foreach($carts as $cart){
-            $total += $cart->product->harga * $cart->qty;
+            if($cart->product == null){
+                $total += $cart->package->harga * $cart->qty;
+            }else{
+                $total += $cart->product->harga * $cart->qty;
+            }
         }
         return view('user.cart', [
             'carts' => $carts,
@@ -22,9 +26,7 @@ class CartController extends Controller
         ]);
     }
 
-    public function increment(Product $product){
-
-        $cart = Cart::where('user_id', Auth::user()->id)->where('product_id', $product->id)->first();
+    public function increment(Cart $cart){
 
         $cart->qty += 1;
         $cart->save();  
@@ -32,9 +34,7 @@ class CartController extends Controller
         return redirect()->route('cart');
     }
 
-    public function decrement(Product $product){
-
-        $cart = Cart::where('user_id', Auth::user()->id)->where('product_id', $product->id)->first();
+    public function decrement(Cart $cart){
 
         if($cart->qty <= 1){
             $cart->delete();
@@ -47,9 +47,7 @@ class CartController extends Controller
         return redirect()->route('cart');
     }
 
-    public function removeProduct(Product $product){
-
-        $cart = Cart::where('user_id', Auth::user()->id)->where('product_id', $product->id)->first();
+    public function removeProduct(Cart $cart){
 
         $cart->delete(); 
 

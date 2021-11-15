@@ -1,4 +1,6 @@
-@include('admin.layouts.master')
+@extends('admin.layouts.master')
+
+@section('title', 'create product')
 
 @section('content')
 <!-- isi Content -->

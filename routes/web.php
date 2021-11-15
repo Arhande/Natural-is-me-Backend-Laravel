@@ -45,9 +45,9 @@ Route::post('register', [AuthController::class, 'registerStore'])->name('registe
 
 
 Route::get('cart', [CartController::class, 'index'])->name('cart');
-Route::delete('carts/{product}', [CartController::class, 'removeProduct'])->name('cart.remove');
-Route::post('carts/{product}/increment', [CartController::class, 'increment'])->name('cart.increment');
-Route::post('carts/{product}/decrement', [CartController::class, 'decrement'])->name('cart.decrement');
+Route::delete('carts/{cart}', [CartController::class, 'removeProduct'])->name('cart.remove');
+Route::post('carts/{cart}/increment', [CartController::class, 'increment'])->name('cart.increment');
+Route::post('carts/{cart}/decrement', [CartController::class, 'decrement'])->name('cart.decrement');
 
 Route::get('orders/store', [OrderController::class, 'create'])->name('orders.store.get');
 Route::get('orders', [OrderController::class, 'index'])->name('orders');

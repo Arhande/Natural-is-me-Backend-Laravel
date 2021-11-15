@@ -23,12 +23,12 @@ class OrderController extends Controller
 
     public function show(Order $order){
         return view('user.order-detail', [
-            'order'=> $order->load('products')
+            'order'=> $order->load('products', 'packages')
         ]);
     }
 
     public function create(){
-        $carts = Cart::where('user_id', Auth::user()->id)->with('product')->latest()->get();
+        $carts = Cart::where('user_id', Auth::user()->id)->with('product', 'package')->latest()->get();
         $total = 0;
 
         if($carts->isEmpty()){
@@ -36,7 +36,11 @@ class OrderController extends Controller
         }
 
         foreach($carts as $cart){
-            $total += $cart->product->harga * $cart->qty;
+            if($cart->product == null){
+                $total += $cart->package->harga * $cart->qty;
+            }else{
+                $total += $cart->product->harga * $cart->qty;
+            }
         }
         return view('user.checkout', [
             'carts' => $carts,
@@ -47,7 +51,7 @@ class OrderController extends Controller
 
     public function store(Request $request){
 
-        $carts = Cart::where('user_id', Auth::user()->id)->with('product')->get();
+        $carts = Cart::where('user_id', Auth::user()->id)->with('product', 'package')->get();
         $this->validate($request, [
             'nama_penerima' => 'required|max:255|string',
             'handphone' => 'required|numeric',
@@ -59,11 +63,17 @@ class OrderController extends Controller
         ]);
         
         $products = [];
+        $packages = [];
         $total = 0;
 
         foreach($carts as $cart){
-            $products[$cart->product_id]['qty'] = $cart->qty;
-            $total += $cart->product->harga * $cart->qty;
+            if($cart->product == null){
+                $packages[$cart->package_id]['qty'] = $cart->qty;
+                $total += $cart->package->harga * $cart->qty;
+            }else{
+                $products[$cart->product_id]['qty'] = $cart->qty;
+                $total += $cart->product->harga * $cart->qty;
+            }
         }
 
         $order = new Order();
@@ -83,6 +93,7 @@ class OrderController extends Controller
 
         
         $order->products()->attach($products);
+        $order->packages()->attach($packages);
         
         $deleteCart = Cart::where('user_id', Auth::user()->id)->delete();
 

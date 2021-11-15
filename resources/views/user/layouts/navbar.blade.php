@@ -20,8 +20,8 @@
       @auth
       <div class="flex">
           <a class="hidden sm:block hover:text-gray-600 ">
-            Hi, {{ auth()->user()->name }}   
-          </a>
+            Hi,    
+          </a>{{ auth()->user()->name }}
           <a  href="{{ route("cart")}}" class="hidden sm:block hover:text-gray-600 px-2">
             <img src="/images/cart.png" alt="cart logo" class="w-6">
           </a>

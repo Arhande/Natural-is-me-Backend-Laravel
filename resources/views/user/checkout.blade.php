@@ -102,10 +102,18 @@
         <div class="mx-8">
             <div>
                 @foreach ($carts as $cart)
-                    <div class="flex justify-between my-2 mt-8">
-                        <div> {{ $cart->product->first_name }} {{ $cart->product->last_name }}</div>
-                        <div class="font-semibold"> {{ $cart->product->harga}} * {{ $cart->qty }} pcs</div>   
-                    </div>
+                    @if ($cart->product_id == null)
+                        <div class="flex justify-between my-2 mt-8">
+                            <div> {{ $cart->package->nama }} (paket)</div>
+                            <div class="font-semibold"> {{ $cart->package->harga}} * {{ $cart->qty }} pcs</div>   
+                        </div>
+                    @else
+                        <div class="flex justify-between my-2 mt-8">
+                            <div> {{ $cart->product->first_name }} {{ $cart->product->last_name }}</div>
+                            <div class="font-semibold"> {{ $cart->product->harga}} * {{ $cart->qty }} pcs</div>   
+                        </div>
+                        
+                    @endif
                 @endforeach
                 
                 <div class="mt-5 border-b-2 border-gray-300 pb-5">Sub Total :   <span class="font-semibold">{{ $total }}  </span></div>
