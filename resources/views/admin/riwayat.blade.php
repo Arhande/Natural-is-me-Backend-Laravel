@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 
-@section('title', 'order')
+@section('title', 'riwayat')
 
 @section('content')
 <div class="w-full flex flex-col h-screen overflow-y-hidden">

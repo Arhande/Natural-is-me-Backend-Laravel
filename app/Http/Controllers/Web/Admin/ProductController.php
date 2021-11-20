@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Cart;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -105,6 +106,17 @@ class ProductController extends Controller
         }
 
         $product->save();
+
+        return redirect()->back();
+    }
+    
+    public function destroy(Product $product){
+        Storage::delete($product->image_path);
+        Storage::delete($product->image_hover_path);
+        $product->orders()->detach();
+        $product->orders()->detach();
+        Cart::where('product_id', '=', $product->id)->delete();
+        $product->delete();
 
         return redirect()->back();
     }

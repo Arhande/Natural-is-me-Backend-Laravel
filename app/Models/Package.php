@@ -12,6 +12,7 @@ class Package extends Model
     protected $table = 'packages';
 
     protected $fillable = [
+        'id',
         'nama',
         'harga',
         'image',
@@ -22,4 +23,21 @@ class Package extends Model
         'deskripsi4',
         'deskripsi5',
     ];
+
+    //laravel accesor
+    public function getImageAttribute($value)
+    {
+        return $value ? url($value) : $value;
+    }
+
+    //laravel accesor
+    public function getImageHoverAttribute($value)
+    {
+        return $value ? url($value) : $value;
+    }
+
+    public function orders()
+    {
+        return $this->belongsToMany(Order::class, 'order_has_products', 'order_id', 'package_id')->withPivot('qty');
+    }
 }

@@ -19,7 +19,7 @@
             <div class="md:flex items-center -mx-10">
               <div class="w-full md:w-1/2 px-10 mb-10 md:mb-0">
                 <div class="relative">
-                  <img src="/images/content1tmn.svg" alt="" />
+                  <img src="{{ $package->image }}" alt="" />
                   <div class="border-4 border-white absolute top-10 bottom-10 left-10 right-10 z-0" >
                   </div>    
                 </div>

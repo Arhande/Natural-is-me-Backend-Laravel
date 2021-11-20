@@ -31,30 +31,29 @@
        <div class="md:flex items-center -mx-10">
          <div class="w-full md:w-1/2 px-10 mb-10 md:mb-0">
            <div class="relative">
-             <img src="/Images/content1tmn.svg" alt="" />
+             <img src="{{ $package->image }}" alt="" />
              <div class="border-4 border-white absolute top-10 bottom-10 left-10 right-10 z-0" >
             </div>
            </div>
          </div>
-         <div class="w-full md:w-1/2 px-10">
+         <form class="w-full md:w-1/2 px-10" action="{{ route('shop.detail.cart.package', $package) }}" method="POST">
+          @csrf
            <div class="mb-2 md:mb-8">
             
-             <h1 class="font-bold uppercase text-2xl mb-5 text-center md:text-left">Perawatan Tanaman</h1>
+             <h1 class="font-bold uppercase text-2xl mb-5 text-center md:text-left">{{ $package->nama }}</h1>
             <div class="text-center md:text-left">
-             <p class="text-sm">1. Foto Taman mu Terlebih dahulu.   </p>
-             <p class="text-sm">2. Kirim Foto ke Whatsapp Diatas.  </p>
-             <p class="text-sm">3. Tentukan Hari  </p>
-             <p class="text-sm">4. Bayar & Kami Siap Merawat Taman Anda  </p>
+             <p class="text-sm">1. {{ $package->deskripsi1 }}   </p>
+             <p class="text-sm">2. {{ $package->deskripsi2 }}  </p>
+             <p class="text-sm">3. {{ $package->deskripsi3 }}  </p>
+             <p class="text-sm">4. {{ $package->deskripsi4 }}  </p>
+             <p class="text-sm">5. {{ $package->deskripsi5 }}  </p>
             </div>
              <div class=" mt-5 text-center md:text-left">
-                 <button onClick={handleMinus}  class="px-3 py-1 text-lg text-white bg-green-600 rounded-md">-</button>
-                  <span class="mx-3">{hari}</span>
-                 <button onClick={handlePlus} class="px-3 py-1 text-lg text-white bg-green-600 rounded-md">+</button>
                   <span class="mx-2">
-                    Hari
+                    1 Hari
                   </span> <br />
                  <div class="text-lg mt-2">
-                   Harga : <span class="text-green-500 font-semibold">Rp.   {harga} </span> 
+                   Harga : <span class="text-green-500 font-semibold">Rp.   {{ $package->harga }} </span> 
                  </div>
 
              </div>
@@ -63,13 +62,13 @@
            <div>
              <div class="lg:inline-block lg:align-bottom my-5">
                    
-              <button type="button" class="border border-green-700 text-gray-100 rounded-md px-4 py-2  transition duration-500 ease select-none hover:text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:shadow-outline w-full" >
+              <button type="submit" class="border border-green-700 text-gray-100 rounded-md px-4 py-2  transition duration-500 ease select-none hover:text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:shadow-outline w-full" >
                 Lanjutkan Checkout
              </button>
                 
                </div>
            </div>
-         </div>
+         </fo>
        </div>
      </div>
      

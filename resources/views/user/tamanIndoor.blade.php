@@ -36,251 +36,40 @@
   <!-- Card Harga Taman -->
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  justify-center mx-10 my-24">
 
+    @foreach ($packages as $package)
     <!-- Card -->
     <div class="max-w-sm w-full sm:w-full lg:w-full py-6 px-3">
       <div class="bg-white shadow-xl rounded-lg overflow-hidden">
-        <div class="bg-cover bg-center h-56 p-4" style="background-image: url(https://via.placeholder.com/450x450);">
-        
+        <div class="bg-cover bg-center h-56 p-4" style="background-image: url({{ $package->image }});">
+          
         </div>
         <div class="p-4">
-          <p class="uppercase rounded tracking-wide text-sm font-bold text-gray-700">Indoor Minimalis A</p>
-          <p class="text-3xl text-gray-900">300.000</p>
-         
+          <p class="uppercase rounded tracking-wide text-sm font-bold text-gray-700">{{ $package->nama }}</p>
+          <p class="text-3xl text-gray-900">Rp. {{ $package->harga }}</p>
+          
         </div>
         <div class="flex p-4 border-t border-gray-300 text-gray-700">
-          <div class="flex-1 inline-flex items-center">
-                <ul>
-                    <li>4 Tanaman </li>
-                    <li>Pot</li>
-                    <li>Peralatan Tanam </li>
-                    <li>Dll</li>
-                        <br />
-                    <a href="" class="uppercase rounded  px-8 py-2  bg-green-600 text-blue-50 max-w-max shadow-sm hover:shadow-lg hover:bg-green-700">
-                        Pesan
-                    </a>
-                </ul>
-  
-  </div></div></div></div>
+          <form class="flex-1 inline-flex items-center" action="{{ route('shop.detail.cart.package', $package) }}" method="POST">
+            @csrf
+            <ul>
+              <li>{{ $package->deskripsi1 }} </li>
+              <li>{{ $package->deskripsi2 }}</li>
+              <li>{{ $package->deskripsi3 }} </li>
+              <li>{{ $package->deskripsi4 }}</li>
+              <li>{{ $package->deskripsi5 }}</li>
+              <br />
+              <button type="submit" class="uppercase rounded  px-8 py-2  bg-green-600 text-blue-50 max-w-max shadow-sm hover:shadow-lg hover:bg-green-700">
+                Pesan
+              </button>
+            </ul>
+          </form>
+        </div>
+      </div>
+    </div>
     <!-- End Card -->
+    @endforeach
 
-     <!-- Card -->
-     <div class="max-w-sm w-full sm:w-full lg:w-full py-6 px-3">
-      <div class="bg-white shadow-xl rounded-lg overflow-hidden">
-        <div class="bg-cover bg-center h-56 p-4" style="background-image: url(https://via.placeholder.com/450x450);">
-        
-        </div>
-        <div class="p-4">
-          <p class="uppercase rounded tracking-wide text-sm font-bold text-gray-700">Indoor Minimalis B</p>
-          <p class="text-3xl text-gray-900">600.000</p>
-         
-        </div>
-        <div class="flex p-4 border-t border-gray-300 text-gray-700">
-          <div class="flex-1 inline-flex items-center">
-                <ul>
-                    <li>4 Tanaman </li>
-                    <li>Pot</li>
-                    <li>Peralatan Tanam </li>
-                    <li>Dll</li>
-                        <br />
-                    <a href="" class="uppercase rounded  px-8 py-2  bg-green-600 text-blue-50 max-w-max shadow-sm hover:shadow-lg hover:bg-green-700">
-                        Pesan
-                    </a>
-                </ul>
-  
-  </div></div></div></div>
-    <!-- End Card -->
-
-     <!-- Card -->
-     <div class="max-w-sm w-full sm:w-full lg:w-full py-6 px-3">
-      <div class="bg-white shadow-xl rounded-lg overflow-hidden">
-        <div class="bg-cover bg-center h-56 p-4" style="background-image: url(https://via.placeholder.com/450x450);">
-        
-        </div>
-        <div class="p-4">
-          <p class="uppercase rounded tracking-wide text-sm font-bold text-gray-700">Indoor Minimalis C</p>
-          <p class="text-3xl text-gray-900">1.000.000</p>
-         
-        </div>
-        <div class="flex p-4 border-t border-gray-300 text-gray-700">
-          <div class="flex-1 inline-flex items-center">
-                <ul>
-                    <li>4 Tanaman </li>
-                    <li>Pot</li>
-                    <li>Peralatan Tanam </li>
-                    <li>Dll</li>
-                        <br />
-                    <a href="" class="uppercase rounded  px-8 py-2  bg-green-600 text-blue-50 max-w-max shadow-sm hover:shadow-lg hover:bg-green-700">
-                        Pesan
-                    </a>
-                </ul>
-  
-  </div></div></div></div>
-    <!-- End Card -->
-
-     <!-- Card -->
-     <div class="max-w-sm w-full sm:w-full lg:w-full py-6 px-3">
-      <div class="bg-white shadow-xl rounded-lg overflow-hidden">
-        <div class="bg-cover bg-center h-56 p-4" style="background-image: url(https://via.placeholder.com/450x450);">
-        
-        </div>
-        <div class="p-4">
-          <p class="uppercase rounded tracking-wide text-sm font-bold text-gray-700">Indoor A</p>
-          <p class="text-3xl text-gray-900">1.000.000</p>
-         
-        </div>
-        <div class="flex p-4 border-t border-gray-300 text-gray-700">
-          <div class="flex-1 inline-flex items-center">
-                <ul>
-                    <li>4 Tanaman </li>
-                    <li>Pot</li>
-                    <li>Peralatan Tanam </li>
-                    <li>Dll</li>
-                        <br />
-                    <a href="" class="uppercase rounded  px-8 py-2  bg-green-600 text-blue-50 max-w-max shadow-sm hover:shadow-lg hover:bg-green-700">
-                        Pesan
-                    </a>
-                </ul>
-  
-  </div></div></div></div>
-    <!-- End Card -->
-
-     <!-- Card -->
-     <div class="max-w-sm w-full sm:w-full lg:w-full py-6 px-3">
-      <div class="bg-white shadow-xl rounded-lg overflow-hidden">
-        <div class="bg-cover bg-center h-56 p-4" style="background-image: url(https://via.placeholder.com/450x450);">
-        
-        </div>
-        <div class="p-4">
-          <p class="uppercase rounded tracking-wide text-sm font-bold text-gray-700">Indoor  B</p>
-          <p class="text-3xl text-gray-900">1.500.000</p>
-         
-        </div>
-        <div class="flex p-4 border-t border-gray-300 text-gray-700">
-          <div class="flex-1 inline-flex items-center">
-                <ul>
-                    <li>4 Tanaman </li>
-                    <li>Pot</li>
-                    <li>Peralatan Tanam </li>
-                    <li>Dll</li>
-                        <br />
-                    <a href="" class="uppercase rounded  px-8 py-2  bg-green-600 text-blue-50 max-w-max shadow-sm hover:shadow-lg hover:bg-green-700">
-                        Pesan
-                    </a>
-                </ul>
-  
-  </div></div></div></div>
-    <!-- End Card -->
-
-
-     <!-- Card -->
-     <div class="max-w-sm w-full sm:w-full lg:w-full py-6 px-3">
-      <div class="bg-white shadow-xl rounded-lg overflow-hidden">
-        <div class="bg-cover bg-center h-56 p-4" style="background-image: url(https://via.placeholder.com/450x450);">
-        
-        </div>
-        <div class="p-4">
-          <p class="uppercase rounded tracking-wide text-sm font-bold text-gray-700">Indoor C</p>
-          <p class="text-3xl text-gray-900">2.000.000</p>
-         
-        </div>
-        <div class="flex p-4 border-t border-gray-300 text-gray-700">
-          <div class="flex-1 inline-flex items-center">
-                <ul>
-                    <li>4 Tanaman </li>
-                    <li>Pot</li>
-                    <li>Peralatan Tanam </li>
-                    <li>Dll</li>
-                        <br />
-                    <a href="" class="uppercase rounded  px-8 py-2  bg-green-600 text-blue-50 max-w-max shadow-sm hover:shadow-lg hover:bg-green-700">
-                        Pesan
-                    </a>
-                </ul>
-  
-  </div></div></div></div>
-    <!-- End Card -->
-
-     <!-- Card -->
-     <div class="max-w-sm w-full sm:w-full lg:w-full py-6 px-3">
-      <div class="bg-white shadow-xl rounded-lg overflow-hidden">
-        <div class="bg-cover bg-center h-56 p-4" style="background-image: url(https://via.placeholder.com/450x450);">
-        
-        </div>
-        <div class="p-4">
-          <p class="uppercase rounded tracking-wide text-sm font-bold text-gray-700">Indoor C</p>
-          <p class="text-3xl text-gray-900">2.500.000</p>
-         
-        </div>
-        <div class="flex p-4 border-t border-gray-300 text-gray-700">
-          <div class="flex-1 inline-flex items-center">
-                <ul>
-                    <li>4 Tanaman </li>
-                    <li>Pot</li>
-                    <li>Peralatan Tanam </li>
-                    <li>Dll</li>
-                        <br />
-                    <a href="" class="uppercase rounded  px-8 py-2  bg-green-600 text-blue-50 max-w-max shadow-sm hover:shadow-lg hover:bg-green-700">
-                        Pesan
-                    </a>
-                </ul>
-  
-  </div></div></div></div>
-    <!-- End Card -->
-
-
-     <!-- Card -->
-     <div class="max-w-sm w-full sm:w-full lg:w-full py-6 px-3">
-      <div class="bg-white shadow-xl rounded-lg overflow-hidden">
-        <div class="bg-cover bg-center h-56 p-4" style="background-image: url(https://via.placeholder.com/450x450);">
-        
-        </div>
-        <div class="p-4">
-          <p class="uppercase rounded tracking-wide text-sm font-bold text-gray-700">Indoor C</p>
-          <p class="text-3xl text-gray-900">3.000.000</p>
-         
-        </div>
-        <div class="flex p-4 border-t border-gray-300 text-gray-700">
-          <div class="flex-1 inline-flex items-center">
-                <ul>
-                    <li>4 Tanaman </li>
-                    <li>Pot</li>
-                    <li>Peralatan Tanam </li>
-                    <li>Dll</li>
-                        <br />
-                    <a href="" class="uppercase rounded  px-8 py-2  bg-green-600 text-blue-50 max-w-max shadow-sm hover:shadow-lg hover:bg-green-700">
-                        Pesan
-                    </a>
-                </ul>
-  
-  </div></div></div></div>
-    <!-- End Card -->
-
-
-     <!-- Card -->
-     <div class="max-w-sm w-full sm:w-full lg:w-full py-6 px-3">
-      <div class="bg-white shadow-xl rounded-lg overflow-hidden">
-        <div class="bg-cover bg-center h-56 p-4" style="background-image: url(https://via.placeholder.com/450x450);">
-        
-        </div>
-        <div class="p-4">
-          <p class="uppercase rounded tracking-wide text-sm font-bold text-gray-700">Indoor C</p>
-          <p class="text-3xl text-gray-900">3.500.000</p>
-         
-        </div>
-        <div class="flex p-4 border-t border-gray-300 text-gray-700">
-          <div class="flex-1 inline-flex items-center">
-                <ul>
-                    <li>4 Tanaman </li>
-                    <li>Pot</li>
-                    <li>Peralatan Tanam </li>
-                    <li>Dll</li>
-                        <br />
-                    <a href="" class="uppercase rounded  px-8 py-2  bg-green-600 text-blue-50 max-w-max shadow-sm hover:shadow-lg hover:bg-green-700">
-                        Pesan
-                    </a>
-                </ul>
-  
-  </div></div></div></div>
-    <!-- End Card -->
+    
 
   </div>
 

@@ -3,23 +3,34 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Models\Package;
 
 class PembuatanTamanController extends Controller
 {
     public function index(){
-        return view('user.taman');
+        $package = Package::first();
+        return view('user.taman', [
+            'package'=>$package
+        ]);
     }
 
     public function PerawatanTaman(){
 
-        return view('user.perawatanTaman');
+        $package = Package::first();
+        return view('user.perawatanTaman', [
+            'package'=>$package
+        ]);
     }
     public function tamanIndoor(){
-
-        return view('user.tamanIndoor');
+        $packages = Package::where('category', 'indoor')->get();
+        return view('user.tamanIndoor', [
+            'packages'=>$packages
+        ]);
     }
     public function tamanOutdoor(){
-
-        return view('user.tamanOutdoor');
+        $packages = Package::where('category', 'outdoor')->get();
+        return view('user.tamanOutdoor', [
+            'packages'=>$packages
+        ]);
     }
 }

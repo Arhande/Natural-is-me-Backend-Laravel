@@ -53,6 +53,22 @@
         Product
       </a>
       <a
+        href="{{ route('admin.packages') }}"
+        class="
+          flex
+          items-center
+          text-black
+          opacity-75
+          hover:opacity-100
+          py-4
+          pl-6
+          nav-item
+        "
+      >
+        <i class="fas fa-table mr-3"></i>
+        Package
+      </a>
+      <a
         href="{{ route('admin.history') }}"
         class="
           flex

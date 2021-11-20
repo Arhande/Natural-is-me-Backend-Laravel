@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
+use App\Models\Package;
 
 class ProductController extends Controller
 {
@@ -56,14 +57,21 @@ class ProductController extends Controller
         return redirect()->back();
     }
 
-    public function destroy(Product $product){
-        Storage::delete($product->image_path);
-        Storage::delete($product->image_hover_path);
-        $product->orders()->detach();
-        $product->orders()->detach();
-        Cart::where('product_id', '=', $product->id)->delete();
-        $product->delete();
+    public function addPackageToCart(Request $request, Package $package){
 
+        $cart = Cart::firstOrNew(
+            [
+                'package_id' => $package->id, 
+                'user_id' =>  Auth::user()->id,
+            ]
+        );
+
+        if(!$cart->exists()){
+            $cart->qty = 1;
+        }else{
+            $cart->qty = $cart->qty + 1;
+        }
+        $cart->save();
         return redirect()->back();
     }
 }

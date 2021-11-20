@@ -16,7 +16,7 @@
                             <img src="{{ asset($cart->package->image) }}" class="w-16 md:w-36 lg:w-64" alt="product" />
                         </div>
                         <div>
-                            <h3 class="font-semibold text-xs lg:text-lg ">{{ $cart->package->name }}</h3>
+                            <h3 class="font-semibold text-xs lg:text-lg ">{{ $cart->package->nama }}</h3>
                         </div>
                         <div class="text-red-500 hover:text-red-400 text-xs md:text-base">
                             <form action="{{ route('cart.remove', $cart->id) }}" method="POST">
@@ -36,9 +36,9 @@
                                             </button>
                                         </form>
                                             <div class="bg-white w-24 text-xs md:text-base flex items-center justify-center cursor-default">
-                                            <span>{{ $cart->qty }}</span>
+                                            <span >{{ $cart->qty }} @if($cart->package->id == 0) hari @endif</span>
                                             </div>
-                                        <form action="{{ route('cart.increment', $cart->id) }}" method="POST">
+                                        <form action="{{ route('cart.increment', $cart->id) }} " method="POST">
                                             @csrf
                                             <button class="font-semibold border-l  bg-gray-400 hover:bg-gray-600 text-white border-gray-400 h-full w-7 flex rounded-r focus:outline-none cursor-pointer">
                                                 <span class="m-auto">+</span>

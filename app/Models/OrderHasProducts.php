@@ -13,6 +13,7 @@ class OrderHasProducts extends Model
 
     protected $fillable = [
         'product_id',
+        'package_id',
         'order_id',
         'qty'
     ];

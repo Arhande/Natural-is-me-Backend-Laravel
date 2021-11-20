@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 
-@section('title', 'product')
+@section('title', 'package')
 
 @section('content')
 <div class="w-full flex flex-col h-screen overflow-y-hidden">
@@ -140,7 +140,7 @@
                 Order
             </a>
             <a
-                href="addProduct.html"
+                href="addPackage.html"
                 class="
                     flex
                     items-center
@@ -153,7 +153,7 @@
                 "
             >
                 <i class="fas fa-table mr-3"></i>
-                Product
+                Package
             </a>
             <a
                 href="riwayat.html"
@@ -210,9 +210,9 @@
 
     <div class="w-full overflow-x-hidden border-t flex flex-col">
         <main class="w-full flex-grow p-6">
-            <h1 class="text-3xl text-black pb-6">Product</h1>
+            <h1 class="text-3xl text-black pb-6">Package</h1>
             <a
-                href="{{ route('admin.products.create') }}"
+                href="{{ route('admin.packages.create') }}"
                 class="
                     flex
                     my-5
@@ -225,7 +225,7 @@
                     w-40
                 "
             >
-                Tambah Product
+                Tambah Package
             </a>
             <div class="bg-white overflow-auto">
                 <table class="min-w-full bg-white border">
@@ -254,43 +254,7 @@
                                     text-sm
                                 "
                             >
-                                Nama Product
-                            </th>
-                            <th
-                                class="
-                                    text-left
-                                    py-3
-                                    px-4
-                                    uppercase
-                                    font-semibold
-                                    text-sm
-                                "
-                            >
-                                Perawatan
-                            </th>
-                            <th
-                                class="
-                                    text-left
-                                    py-3
-                                    px-4
-                                    uppercase
-                                    font-semibold
-                                    text-sm
-                                "
-                            >
-                                Category
-                            </th>
-                            <th
-                                class="
-                                    text-left
-                                    py-3
-                                    px-4
-                                    uppercase
-                                    font-semibold
-                                    text-sm
-                                "
-                            >
-                                Air
+                                Nama Package
                             </th>
                             <th
                                 class="
@@ -314,32 +278,98 @@
                                     text-sm
                                 "
                             >
+                                deskripsi 1
+                            </th>
+                            <th
+                                class="
+                                    text-left
+                                    py-3
+                                    px-4
+                                    uppercase
+                                    font-semibold
+                                    text-sm
+                                "
+                            >
+                                deskripsi 2
+                            </th>
+                            <th
+                                class="
+                                    text-left
+                                    py-3
+                                    px-4
+                                    uppercase
+                                    font-semibold
+                                    text-sm
+                                "
+                            >
+                                deskripsi 3
+                            </th>
+                            <th
+                                class="
+                                    text-left
+                                    py-3
+                                    px-4
+                                    uppercase
+                                    font-semibold
+                                    text-sm
+                                "
+                            >
+                                deskripsi 4
+                            </th>
+                            <th
+                                class="
+                                    text-left
+                                    py-3
+                                    px-4
+                                    uppercase
+                                    font-semibold
+                                    text-sm
+                                "
+                            >
+                                deskripsi 5
+                            </th>
+                            <th
+                                class="
+                                    text-left
+                                    py-3
+                                    px-4
+                                    uppercase
+                                    font-semibold
+                                    text-sm
+                                "
+                            >
                                 Action
                             </th>
                         </tr>
                     </thead>
                     <tbody class="text-gray-700">
-                        @foreach ($products as $product)
+                        @foreach ($packages as $package)
                         <tr>
                             <td class="border text-left py-3 px-4">
                                 {{ $loop->index + 1 }}
                             </td>
                             <td class="border text-left py-3 px-4">
-                                {{ $product->first_name }} {{ $product->last_name }}
+                                {{ $package->nama }}
                             </td>
                             <td
                                 class="border w-1/5 text-left py-3 px-4"
                             >
-                                {{ $product->perawatan }}
+                                Rp. {{ $package->harga }}
                             </td>
                             <td class="border text-left py-3 px-4">
-                                {{ $product->category->name }}
+                                {{ $package->deskripsi1 }}
                             </td>
                             <td class="border text-left py-3 px-4">
-                                {{ $product->air }}
+                                {{ $package->deskripsi2 }}
                             </td>
                             <td class="border text-left py-3 px-4">
-                                Rp. {{ $product->harga }}
+                                {{ $package->deskripsi3 }}
+                            </td>
+                            <td class="border text-left py-3 px-4">
+                                {{ $package->deskripsi4 }}
+                            </td>
+                            <td class="border text-left py-3 px-4">
+                                {{ $package->deskripsi5 }}
                             </td>
                             <td>
                                 <div
@@ -350,7 +380,7 @@
                                         space-x-1
                                     "
                                 >
-                                    <a href="{{ route('admin.products.edit', $product->id ) }}" class="bg-red-800">
+                                    <a href="{{ route('admin.packages.edit', $package->id ) }}" class="bg-red-800">
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             class="
@@ -372,7 +402,7 @@
                                         </svg>
                                     </a>
 
-                                    <form action="{{ route('admin.products.delete', ['product' => $product->id]) }}" method="POST" class="bg-gray-800">
+                                    <form action="{{ route('admin.packages.delete', ['package' => $package->id]) }}" method="POST" class="bg-gray-800">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="flex justify-center items-center" >

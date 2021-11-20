@@ -10,6 +10,7 @@ use App\Http\Controllers\Web\OrderController;
 use App\Http\Controllers\Web\PembuatanTamanController;
 use App\Http\Controllers\Web\ProductController;
 use App\Http\Controllers\Web\Admin\ProductController as AdminProductController;
+use App\Http\Controllers\Web\Admin\PackageController as AdminPackageController;
 use App\Http\Controllers\Web\Admin\OrderController as AdminOrderController;
 use App\Http\Controllers\Web\Admin\DashboardController;
 use Illuminate\Support\Facades\Route;
@@ -29,8 +30,8 @@ Route::get('', [HomeController::class, 'index'])->name('landingWeb');
 
 Route::get('shop', [ProductController::class, 'index'])->name('shop');
 Route::get('shop/{product}', [ProductController::class, 'show'])->name('shop.detail');
-Route::delete('shop/{product}', [ProductController::class, 'destroy'])->name('shop.delete');
 Route::post('shop/{product}/cart', [ProductController::class, 'addProductToCart'])->name('shop.detail.cart');
+Route::post('shop/{package}/cart/package', [ProductController::class, 'addPackageToCart'])->name('shop.detail.cart.package');
 
 Route::get('login', [AuthController::class, 'login'])->name('login');
 Route::post('login', [AuthController::class, 'loginStore'])->name('login.store');
@@ -78,5 +79,12 @@ Route::group(['prefix' => 'admin'], function () {
     Route::post('products', [AdminProductController::class, 'store'])->name('admin.products.store');
     Route::get('products/{product}', [AdminProductController::class, 'edit'])->name('admin.products.edit');
     Route::put('products/{product}', [AdminProductController::class, 'update'])->name('admin.products.update');
+    Route::delete('products/{product}', [AdminProductController::class, 'destroy'])->name('admin.products.delete');
     
+    Route::get('packages', [AdminPackageController::class, 'index'])->name('admin.packages');
+    Route::get('packages/store', [AdminPackageController::class, 'create'])->name('admin.packages.create');
+    Route::post('packages', [AdminPackageController::class, 'store'])->name('admin.packages.store');
+    Route::get('packages/{package}', [AdminPackageController::class, 'edit'])->name('admin.packages.edit');
+    Route::put('packages/{package}', [AdminPackageController::class, 'update'])->name('admin.packages.update');
+    Route::delete('packages/{package}', [AdminPackageController::class, 'destroy'])->name('admin.packages.delete');
 });
