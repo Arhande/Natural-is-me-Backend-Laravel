@@ -7,7 +7,7 @@
         <!--Slide 1-->
         <input class="carousel-open" type="radio" id="carousel-1" name="carousel" aria-hidden="true" hidden="" checked="checked">
         <div class="carousel-item absolute opacity-0 h-auto" >
-          <img src="/images/banner1.svg" alt="banner1">
+          <img src="{{asset('images/banner1.svg')}}" alt="banner1">
         </div>
         <label for="carousel-3" class="prev control-1 w-10 h-10 ml-2 md:ml-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full opacity-20 bg-gray-300 hover:bg-gray-700 leading-tight text-center z-10 inset-y-0 left-0 my-auto">‹</label>
         <label for="carousel-2" class="next control-1 w-10 h-10 mr-2 md:mr-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full opacity-20 bg-gray-300 hover:bg-gray-700 leading-tight text-center z-10 inset-y-0 right-0 my-auto">›</label>
@@ -15,7 +15,7 @@
         <!--Slide 2-->
         <input class="carousel-open" type="radio" id="carousel-2" name="carousel" aria-hidden="true" hidden="">
         <div class="carousel-item absolute opacity-0 h-auto" >
-          <img src="/images/banner2.svg" alt="banner2">
+          <img src="{{asset('images/banner2.svg')}}" alt="banner2">
         </div>
         <label for="carousel-1" class="prev control-2 w-10 h-10 ml-2 md:ml-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full opacity-20 bg-gray-300 hover:bg-gray-700 leading-tight text-center z-10 inset-y-0 left-0 my-auto">‹</label>
         <label for="carousel-3" class="next control-2 w-10 h-10 mr-2 md:mr-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full opacity-20 bg-gray-300 hover:bg-gray-700 leading-tight text-center z-10 inset-y-0 right-0 my-auto">›</label> 
@@ -23,7 +23,7 @@
         <!--Slide 3-->
         <input class="carousel-open" type="radio" id="carousel-3" name="carousel" aria-hidden="true" hidden="">
         <div class="carousel-item absolute opacity-0 h-auto" >
-          <img src="/images/banner3.svg" alt="banner3">
+          <img src="{{asset('images/banner3.svg')}}" alt="banner3">
         </div>
         <label for="carousel-2" class="prev control-3 w-10 h-10 ml-2 md:ml-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full opacity-20 bg-gray-300 hover:bg-gray-700 leading-tight text-center z-10 inset-y-0 left-0 my-auto">‹</label>
         <label for="carousel-1" class="next control-3 w-10 h-10 mr-2 md:mr-10 absolute cursor-pointer hidden text-3xl font-bold text-black hover:text-white rounded-full opacity-20 bg-gray-300 hover:bg-gray-700 leading-tight text-center z-10 inset-y-0 right-0 my-auto">›</label>
@@ -175,7 +175,7 @@
         <div class="container mx-auto my-5 ">
         <div class="relative bg-white rounded-lg flex flex-col md:flex-row items-center md:shadow-xl md:h-72 mx-2">
         <div class="z-0 order-1  md:order-2 relative w-full md:w-2/5 h-80 md:h-full overflow-hidden rounded-lg md:rounded-none md:rounded-r-lg ">
-        <img src="images/content1.png" alt="content1" class="absolute inset-0 w-full h-full object-fill object-center" />
+        <img src="{{ asset('images/content1.png') }}" alt="content1" class="absolute inset-0 w-full h-full object-fill object-center" />
         <div class="md:hidden absolute inset-0 h-full p-6 pb-6 flex flex-col-reverse justify-start items-start bg-gradient-to-b from-transparent via-transparent to-gray-900">
         <a href="#"> 
           <h3 class="w-full font-bold text-2xl text-white leading-tight mb-2">
@@ -223,20 +223,20 @@
               <div class="mt-10">
                   <div class="text-center md:text-left mb-2 text-xs md:text-base lg:text-lg">Shop</div>
                   <div >
-                      <img src="/images/content2.png" alt="content" class="w-60 lg:w-72"/>
+                      <img src="{{ asset('images/content2.png') }}" alt="content" class="w-60 lg:w-72"/>
                   </div>
               </div>
 
               <div class="mt-10 md:mx-5">
                    <div class="text-center md:text-left mb-2 text-xs md:text-base lg:text-lg">Inspirasi</div>
                   <div >
-                      <img src="/images/content3.png" alt="content" class="w-60 lg:w-72"/>
+                      <img src="{{ asset('images/content3.png') }}" alt="content" class="w-60 lg:w-72"/>
                   </div>
               </div>
               <div class="mt-10 ">
               <div class="text-center md:text-left mb-2 text-xs md:text-base lg:text-lg">Pembuatan taman</div>
                   <div >
-                      <img src="/images/content4.png" alt="content" class="w-60 lg:w-72"/>
+                      <img src="{{ asset('images/content4.png') }}" alt="content" class="w-60 lg:w-72"/>
                   </div>
               </div>
 

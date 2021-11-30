@@ -6,7 +6,7 @@
 
       <!-- Carrousel -->
       <div>
-          <img src="/images/banner4.svg" alt="banner4">
+          <img src="{{ asset('/images/banner4.svg')}}" alt="banner4">
       </div>
       <!-- End Carrousel -->
   
@@ -60,7 +60,7 @@
             <div class="relative mb-2">
                 <div class="w-10 h-10 md:w-14 md:h-14  mx-auto  bg-white  text-lg text-white flex items-center">
                 <span class="text-center text-gray-600 w-full mb-5">
-                            <img src="/images/step1.svg" alt="step" />
+                            <img src="{{ asset('/images/step1.svg')}}" alt="step" />
                 </span>
                 </div>
             </div>
@@ -76,7 +76,7 @@
                 </div>
                 <div class="w-10 h-10 md:w-14 md:h-14  mx-auto  bg-white  text-lg text-white flex items-center">
                 <span class="text-center text-gray-600 w-full mb-5">
-                        <img src="/images/step3.svg" alt="step" />
+                        <img src="{{ asset('/images/step3.svg')}}" alt="step" />
                 </span>
                 </div>
             </div>
@@ -92,7 +92,7 @@
                 </div>
                 <div class="w-10 h-10 md:w-14 md:h-14  mx-auto  bg-white  text-lg text-white flex items-center">
                 <span class="text-center text-gray-600 w-full mb-5">
-                            <img src="/images/step2.svg" alt="step" />
+                            <img src="{{ asset('/images/step2.svg')}}" alt="step" />
                 </span>
                 </div>
             </div>
@@ -108,7 +108,7 @@
                 </div>
                 <div class="w-10 h-10 md:w-14 md:h-14  mx-auto  bg-white  text-lg text-white flex items-center">
                 <span class="text-center text-gray-600 w-full mb-5">
-                        <img src="/images/step4.svg" alt="step" />
+                        <img src="{{ asset('/images/step4.svg')}}" alt="step" />
                 </span>
                 </div>
             </div>
@@ -125,7 +125,7 @@
                 <div class="container mx-auto my-5 ">
                 <div class="relative bg-white rounded-lg flex flex-col md:flex-row items-center md:shadow-xl md:h-72 mx-2">
                 <div class="z-0 order-1  md:order-2 relative w-full md:w-2/5 h-80 md:h-full overflow-hidden rounded-lg md:rounded-none md:rounded-r-lg ">
-                <img src="/images/content1.png" alt="content1" class="absolute inset-0 w-full h-full object-fill object-center" />
+                <img src="{{ asset('/images/content1.png')}}" alt="content1" class="absolute inset-0 w-full h-full object-fill object-center" />
                 <div class="md:hidden absolute inset-0 h-full p-6 pb-6 flex flex-col-reverse justify-start items-start bg-gradient-to-b from-transparent via-transparent to-gray-900">
                 <a href="/pages/taman/indoor.html"> 
                 <h3 class="w-full font-bold text-2xl text-white leading-tight mb-2">
@@ -170,7 +170,7 @@
                 <div class="container mx-auto my-5 ">
                 <div class="relative bg-white rounded-lg flex flex-col md:flex-row items-center md:shadow-xl md:h-72 mx-2">
                 <div class="z-0 order-1  md:order-2 relative w-full md:w-2/5 h-80 md:h-full overflow-hidden rounded-lg md:rounded-none md:rounded-r-lg ">
-                <img src="/images/content2tmn.jpeg" alt="content1" class="absolute inset-0 w-full h-full object-fill object-center" />
+                <img src="{{ asset('/images/content2tmn.jpeg')}}" alt="content1" class="absolute inset-0 w-full h-full object-fill object-center" />
                 <div class="md:hidden absolute inset-0 h-full p-6 pb-6 flex flex-col-reverse justify-start items-start bg-gradient-to-b from-transparent via-transparent to-gray-900">
                 <a href="{{route('tamanOutdoor')}}"> 
                 <h3 class="w-full font-bold text-2xl text-white leading-tight mb-2">

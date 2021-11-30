@@ -1,7 +1,7 @@
 <aside class="relative bg-sidebar h-120vh w-64 hidden sm:block shadow-xl">
     <div class="p-6">
       <a href="{{ route('admin') }}">
-        <img src="/images/logo.png" alt="logo" />
+        <img src="{{ asset('/images/logo.png') }}" alt="logo" />
       </a>
     </div>
     <nav class="text-black text-base font-semibold pt-3">

@@ -4,7 +4,7 @@
         <div class="grid grid-cols-12">
           <div class="pb-6 col-span-full md:pb-0 md:col-span-5">
             <Link to='/' class="flex justify-center space-x-3 md:justify-start">
-                <img src="/Images/logo.png" alt="logo" class="h-40"/>			
+                <img src="{{ asset('images/logo.png') }}" alt="logo" class="h-40"/>			
             </Link>
           </div>
           <div class="col-span-6 text-center md:text-left md:col-span-4 md:my-10">

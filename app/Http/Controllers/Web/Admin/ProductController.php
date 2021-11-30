@@ -50,13 +50,13 @@ class ProductController extends Controller
         
         if ($request->hasFile('image')) {
             $image_path = $request->file('image')->store('public/products/images');
-            $product->image = Storage::url($image_path);
+            $product->image = "/naturalisme/public" . Storage::url($image_path);
             $product->image_path = $image_path;
         }
         
         if ($request->hasFile('image_hover')) {
             $image_path = $request->file('image_hover')->store('public/products/hover');
-            $product->image_hover = Storage::url($image_path);
+            $product->image_hover = "/naturalisme/public" .  Storage::url($image_path);
             $product->image_hover_path = $image_path;
         }
 
@@ -95,13 +95,13 @@ class ProductController extends Controller
         
         if ($request->hasFile('image')) {
             $image_path = $request->file('image')->store('public/products/images');
-            $product->image = Storage::url($image_path);
+            $product->image = "/naturalisme/public" .  Storage::url($image_path);
             $product->image_path = $image_path;
         }
         
         if ($request->hasFile('image_hover')) {
             $image_path = $request->file('image_hover')->store('public/products/hover');
-            $product->image_hover = Storage::url($image_path);
+            $product->image_hover = "/naturalisme/public" .  Storage::url($image_path);
             $product->image_hover_path = $image_path;
         }
 

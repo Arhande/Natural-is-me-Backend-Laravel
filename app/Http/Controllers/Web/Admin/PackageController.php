@@ -48,7 +48,7 @@ class PackageController extends Controller
         
         if ($request->hasFile('image')) {
             $image_path = $request->file('image')->store('public/packages/images');
-            $package->image = Storage::url($image_path);
+            $package->image = "/naturalisme/public" . Storage::url($image_path);
             $package->image_path = $image_path;
         }
 
@@ -86,14 +86,8 @@ class PackageController extends Controller
         
         if ($request->hasFile('image')) {
             $image_path = $request->file('image')->store('public/packages/images');
-            $package->image = Storage::url($image_path);
+            $package->image = "/naturalisme/public" . Storage::url($image_path);
             $package->image_path = $image_path;
-        }
-        
-        if ($request->hasFile('image_hover')) {
-            $image_path = $request->file('image_hover')->store('public/packages/hover');
-            $package->image_hover = Storage::url($image_path);
-            $package->image_hover_path = $image_path;
         }
 
         $package->save();

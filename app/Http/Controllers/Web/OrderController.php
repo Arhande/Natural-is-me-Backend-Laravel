@@ -112,7 +112,7 @@ class OrderController extends Controller
 
         $order->atas_nama_rekening = $request->atas_nama_rekening;
         $image_path = $request->file('image_bukti')->store('public/orders/images');
-        $order->image_bukti = Storage::url($image_path);
+        $order->image_bukti = "/naturalisme/public" .  Storage::url($image_path);
         $order->image_bukti_path = $image_path;
         $order->status = "Menunggu Konfirmasi";
         $order->save();

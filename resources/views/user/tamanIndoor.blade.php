@@ -4,7 +4,7 @@
 
 <!-- Carrousel -->
 
-<div class="text-center h-72 w-full bg-cover " style="background-image: url(/images/indoor.jpeg);">
+<div class="text-center h-72 w-full bg-cover " style="background-image: url({{ asset('images/indoor.jpeg') }});">
     <div class="border">
   
   <div class="text-xl md:text-3xl lg:text-4xl mt-8 lg:mt-5 lg:mb-3  font-semibold ">

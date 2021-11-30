@@ -6,7 +6,7 @@
           <!-- logo -->
        <div>
          <a href="{{ route("landingWeb")}}">
-           <img src="/images/logo.png" alt="logo" class="h-20 md:h-24 lg:h-24 ">
+           <img src="{{ asset('images/logo.png') }}" alt="logo" class="h-20 md:h-24 lg:h-24 ">
          </a>  
        </div>
       <!-- primary nav -->
@@ -23,7 +23,7 @@
             Hi,    
           </a>{{ auth()->user()->name }}
           <a  href="{{ route("cart")}}" class="hidden sm:block hover:text-gray-600 px-2">
-            <img src="/images/cart.png" alt="cart logo" class="w-6">
+            <img src="{{ asset('images/cart.png') }}" alt="cart logo" class="w-6">
           </a>
           <a href="{{ route("orders")}}">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">

@@ -25,7 +25,7 @@
           >
             <div class="md:flex w-full">
               <div class="hidden md:block w-1/2 py-10 px-10">
-                <img src="/images/login.png" alt="login" />
+                <img src="{{ asset('images/login.png') }}" alt="login" />
               </div>
               <div class="w-full md:w-1/2 py-10 px-5 md:px-10">
                 <div class="text-center mb-10">
@@ -89,7 +89,7 @@
                       </button>
                       <div class="text-center my-5">OR</div>
                       <a href="{{ route('google') }}" class=" flex flex-wrap justify-center text-center w-full max-w-xs mx-auto border hover:bg-gray-100  text-white rounded-lg px-3 py-3 font-semibold">
-                          <img src="/images/gogle.png" alt="google" class="w-5 items-center">
+                          <img src="{{ asset('images/gogle.png') }}" alt="google" class="w-5 items-center">
                       </a>
                     </div>
                   </div>
